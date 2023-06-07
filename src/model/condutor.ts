@@ -1,9 +1,9 @@
 import { AbstractEntity } from "./abstract-entity"
 
 export class Condutor extends AbstractEntity {
-    nome!: String
-    cpf!: String
-    telefone!: String
+    nome!: string
+    cpf!: string
+    telefone!: string
     tempoPago!: Date
     tempoDesconto!: Date
 

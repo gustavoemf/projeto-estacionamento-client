@@ -4,7 +4,7 @@ import { Tipo } from "./enums/tipo"
 import { Modelo } from "./modelo"
 
 export class Veiculo extends AbstractEntity {
-    placa!: String
+    placa!: string
     modelo!: Modelo
     cor!: Cor
     tipo!: Tipo
