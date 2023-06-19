@@ -40,8 +40,8 @@ export default defineComponent({
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-
 #nav {
     width: 100%;
     min-height: 50px;
@@ -50,16 +50,18 @@ export default defineComponent({
     justify-content: space-between;
     align-items: center;
 }
-
 .navbar-item {
     margin-left: 2em;
     text-decoration: none;
     color: black;
     font-weight: bold;
 }
-
+#left-side-navbar svg {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
 #right-side-navbar {
-    text-decoration: none;
-    color: inherit;
     margin-right: 2em;
-}</style>
+}
+</style>
