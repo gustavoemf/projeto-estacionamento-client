@@ -93,7 +93,6 @@ export default defineComponent({
 label {
     display: flex;
     margin-left: 42px;
-    align-items: start;
     font-size: 14px;
     color: #222;
     font-weight: bold;

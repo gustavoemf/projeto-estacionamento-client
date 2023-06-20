@@ -21,11 +21,11 @@
             <div class="form-expedientes">
                 <div class="form-element">
                     <label for="inicioExpediente">Início expediente:</label>
-                    <input type="text" id="inicioExpediente" placeholder="Horas para início do expediente" />
+                    <input type="text" id="inicioExpediente" placeholder="Horário de início" />
                 </div>
                 <div class="form-element">
                     <label for="fimExpediente">Fim expediente:</label>
-                    <input type="text" id="fimExpediente" placeholder="Horas para fim do expediente" />
+                    <input type="text" id="fimExpediente" placeholder="Horário do fim" />
                 </div>
             </div>
             <div class="form-gerar-desconto">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-element">
                     <label for="tempoGanhoDeDesconto">Tempo ganho de desconto:</label>
-                    <input type="text" id="tempoGanhoDeDesconto" placeholder="Tempo ganho de desconto:" />
+                    <input type="text" id="tempoGanhoDeDesconto" placeholder="Tempo ganho" />
                 </div>
             </div>
             <div class="form-vagas">
@@ -110,25 +110,40 @@ export default defineComponent({
     .form {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        margin-left: 30px;
+
+        .form-valores,
+        .form-expedientes,
+        .form-gerar-desconto,
+        .form-descontos,
+        .form-vagas {
+            display: flex;
+            flex-direction: row;
+            margin-left: 30px;
+        }
+
         .form-element {
             margin: 15px 0;
         }
 
         label {
+            display: flex;
             font-size: 14px;
             color: #222;
+            font-weight: bold;
         }
 
         input[type='text'] {
             margin: auto;
             margin-top: 5px;
+            margin-left: 0;
             display: block;
-            width: 20%;
+            width: 90%;
             padding: 10px;
             outline: none;
             border: 1px solid #aaa;
             border-radius: 5px;
+            font-size: 0.9em;
         }
     }
 }
@@ -144,5 +159,4 @@ export default defineComponent({
     h2 {
         margin-left: 30px;
     }
-}
-</style>
+}</style>
