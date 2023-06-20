@@ -4,15 +4,15 @@
         <div class="form">
             <h2>Cadastro de MOVIMENTAÇÃO</h2>
             <div class="form-element">
-                <label for="entrada">Entrada</label>
+                <label for="entrada">Entrada:</label>
                 <input type="text" id="entrada" placeholder="Insira a data de entrada" />
             </div>
             <div class="form-element">
-                <label for="condutor">Condutor</label>
+                <label for="condutor">Condutor:</label>
                 <input type="text" id="condutor" placeholder="Insira o nome do condutor" />
             </div>
             <div class="form-element">
-                <label for="veiculo">Veículo</label>
+                <label for="veiculo">Veículo:</label>
                 <input type="text" id="veiculo" placeholder="Insira a placa do veículo" />
             </div>
             <div class="form-element">
@@ -91,8 +91,12 @@ export default defineComponent({
 }
 
 label {
+    display: flex;
+    margin-left: 42px;
+    align-items: start;
     font-size: 14px;
     color: #222;
+    font-weight: bold;
 }
 
 input[type='text'] {

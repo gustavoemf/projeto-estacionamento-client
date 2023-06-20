@@ -80,6 +80,7 @@ export default defineComponent({
 #header-configuracao {
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
     align-items: end;
     padding-bottom: 15px;
     margin: 0px 30px;
@@ -102,19 +103,6 @@ export default defineComponent({
         height: 40px;
         color: black;
         font-weight: bold;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    #header-configuracao {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    h2 {
-        margin-left: 30px;
     }
 }
 
@@ -142,6 +130,19 @@ export default defineComponent({
             border: 1px solid #aaa;
             border-radius: 5px;
         }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #header-configuracao {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h2 {
+        margin-left: 30px;
     }
 }
 </style>
