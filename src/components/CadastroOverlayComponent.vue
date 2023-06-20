@@ -1,6 +1,6 @@
 <template>
     <div class="popup" :class="{ 'active': showPopup, 'hidden': hidden }">
-        <div class="close-btn" @click="fecharPopup">&times;</div>
+        <div class="close-btn" @click="closePopup">&times;</div>
         <div class="form">
             <h2>Cadastro de MOVIMENTAÇÃO</h2>
             <div class="form-element">
@@ -16,7 +16,7 @@
                 <input type="text" id="veiculo" placeholder="Insira a placa do veículo" />
             </div>
             <div class="form-element">
-                <button @click="fecharPopup">Concluir</button>
+                <button @click="closePopup">Concluir</button>
             </div>
         </div>
     </div>
@@ -38,31 +38,31 @@ export default defineComponent({
         }
     },
     methods: {
-        fecharPopup() {
+        closePopup() {
             this.$emit('closePopup');
         }
     }
 });
 </script>
   
-<style lang="scss">
+<style scoped lang="scss">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .popup {
     position: absolute;
     top: 50%;
     left: 50%;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.25);
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
     width: 480px;
     padding: 20px 30px;
     background: #fff;
     box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
-}
-
-.popup.active {
-    top: 50%;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
 }
 
 .close-btn {

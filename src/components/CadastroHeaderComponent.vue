@@ -3,10 +3,8 @@
         <select name="elemento" id="elemento-header-cadastro" placeholder="Elemento"></select>
         <input id="barra-pesquisa" type="text" placeholder="Digite aqui o que deseja pesquisar..." />
         <div id="buttons-header-cadastro">
-            <div>
-                <button type="button" class="btn btn-success" @click="abrirPopup">Novo</button>
-            </div>
-            <CadastroOverlayComponent :showPopup="showPopup" :hidden="!showPopup" @closePopup="fecharPopup" />
+            <button type="button" class="btn btn-success" @click="abrirPopup">Novo</button>
+            <CadastroOverlayComponent :showPopup="showPopup" :hidden="!showPopup" @closePopup="closePopup" />
             <button type="button" class="btn btn-danger">Editar</button>
             <button type="button" class="btn btn-warning">Excluir</button>
         </div>
@@ -55,7 +53,7 @@ export default defineComponent({
         abrirPopup() {
             this.showPopup = true;
         },
-        fecharPopup() {
+        closePopup() {
             this.showPopup = false;
         }
     }
@@ -113,15 +111,6 @@ export default defineComponent({
     justify-content: center;
 }
 
-@media only screen and (max-width: 900px) {
-    #header-cadastro {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
 .conteudo-table {
     border-collapse: collapse;
     margin: 25px auto;
@@ -152,6 +141,15 @@ export default defineComponent({
 
     tbody tr:last-of-type {
         border-bottom: 1px solid black;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #header-cadastro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 </style>
