@@ -2,8 +2,7 @@
     <div id="header-configuracao">
         <h2>CONFIGURAÇÕES</h2>
         <div class="configuracao-buttons">
-            <button type="button" class="btn btn-info">Salvar</button>
-            <button type="button" class="btn btn-light" style="background-color: #aaa;">Cancelar</button>
+            <button type="button" class="btn btn-secondary">Salvar</button>
         </div>
     </div>
     <div class="body-configuracao">
@@ -75,6 +74,7 @@ export default defineComponent({
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: black;
 }
 
 #header-configuracao {
@@ -102,7 +102,6 @@ export default defineComponent({
         width: 100px;
         height: 40px;
         color: black;
-        font-weight: bold;
     }
 }
 

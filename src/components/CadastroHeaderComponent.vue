@@ -1,35 +1,47 @@
 <template>
     <div id="header-cadastro">
-        <select name="elemento" id="elemento-header-cadastro" placeholder="Elemento"></select>
-        <input id="barra-pesquisa" type="text" placeholder="Digite aqui o que deseja pesquisar..." />
+        <select class="form-select">
+            <option selected>Movimentação</option>
+            <option value="1">Condutor</option>
+            <option value="2">Veículo</option>
+            <option value="3">Modelo</option>
+            <option value="4">Marca</option>
+        </select>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Digite aqui o que deseja pesquisar..."
+                aria-label="Search">
+            <button class="btn btn-secondary" type="submit">Buscar</button>
+        </form>
         <div id="buttons-header-cadastro">
             <button type="button" class="btn btn-success" @click="abrirPopup">Novo</button>
             <CadastroOverlayComponent :showPopup="showPopup" :hidden="!showPopup" @closePopup="closePopup" />
-            <button type="button" class="btn btn-danger">Editar</button>
-            <button type="button" class="btn btn-warning">Excluir</button>
         </div>
     </div>
     <table class="conteudo-table">
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Ativo</th>
                 <th>Entrada</th>
                 <th>Condutor</th>
                 <th>Veículo</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>00:00:00</td>
-                <td>Gustavo</td>
-                <td>ABC1D23</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>00:00:00</td>
-                <td>Gustavo</td>
-                <td>ABC1D23</td>
+            <tr v-for="(item, index) in items" :key="index">
+                <td>{{ item.id }}</td>
+                <td>
+                    <span v-if="item.ativo" class="badge text-bg-success"> Ativo </span>
+                    <span v-if="!item.ativo" class="badge text-bg-danger"> Inativo </span>
+                </td>
+                <td>{{ item.entrada }}</td>
+                <td>{{ item.condutor }}</td>
+                <td>{{ item.veiculo }}</td>
+                <td>
+                    <button type="button" class="btn btn-warning">Editar</button>
+                    <button type="button" class="btn btn-danger">Excluir</button>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -46,7 +58,11 @@ export default defineComponent({
     },
     data() {
         return {
-            showPopup: false
+            showPopup: false,
+            items: [
+                { id: 1, ativo: true, entrada: '00:00:00', condutor: 'Gustavo', veiculo: 'ABC1D23' },
+                { id: 2, ativo: false, entrada: '00:00:00', condutor: 'Gustavo', veiculo: 'ABC1D23' }
+            ]
         };
     },
     methods: {
@@ -74,6 +90,32 @@ export default defineComponent({
     margin: 0px 30px;
     border-bottom: 1px black solid;
 
+    select {
+        padding-left: 10px;
+        margin-top: 50px;
+        min-width: fit-content;
+        width: 200px;
+        height: 40px;
+        min-height: fit-content;
+    }
+
+    form {
+        margin-left: 10px;
+        margin-top: 50px;
+        min-width: fit-content;
+        width: 500px;
+        height: 40px;
+        min-height: fit-content;
+
+        input {
+            padding-left: 10px;
+        }
+
+        button {
+            margin: 0;
+        }
+    }
+
     button {
         display: flex;
         margin-left: 15px;
@@ -84,16 +126,7 @@ export default defineComponent({
         align-items: center;
         text-align: center;
         color: black;
-        font-weight: bold;
     }
-}
-
-#elemento-header-cadastro {
-    margin-top: 50px;
-    min-width: fit-content;
-    width: 200px;
-    height: 40px;
-    min-height: fit-content;
 }
 
 #barra-pesquisa {
@@ -141,6 +174,21 @@ export default defineComponent({
 
     tbody tr:last-of-type {
         border-bottom: 1px solid black;
+    }
+
+    tbody td span {
+        padding: 3px;
+    }
+
+    button {
+        padding: 2px;
+        margin: 2px;
+        color: rgba(0, 0, 0, 0.9);
+        font-weight: 500;
+    }
+
+    button:last-child {
+        margin-right: 0;
     }
 }
 

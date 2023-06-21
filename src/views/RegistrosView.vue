@@ -9,7 +9,7 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 import CadastroHeaderComponent from '@/components/CadastroHeaderComponent.vue';
 
 export default defineComponent({
-  name: 'CadastroView',
+  name: 'RegistrosView',
   components: {
     HeaderComponent,
     CadastroHeaderComponent

@@ -9,7 +9,7 @@
   import ConfiguracaoComponent from '@/components/ConfiguracaoComponent.vue';
   
   export default defineComponent({
-    name: 'ConfiguracaoView',
+    name: 'ConfiguracoesView',
     components: {
     HeaderComponent,
     ConfiguracaoComponent
