@@ -1,4 +1,4 @@
-import { Marca } from '@/model/marca';
+import { Marca } from '@/model/MarcaModel';
 import axios, { AxiosInstance } from 'axios';
 
 export class MarcaClient {

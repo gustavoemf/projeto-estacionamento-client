@@ -1,4 +1,4 @@
-import { Veiculo } from "@/model/veiculo";
+import { Veiculo } from "@/model/VeiculoModel";
 import axios, { AxiosInstance } from "axios";
 
 

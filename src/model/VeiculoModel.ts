@@ -1,7 +1,7 @@
-import { AbstractEntity } from "./abstract-entity"
-import { Cor } from "./enums/cor"
-import { Tipo } from "./enums/tipo"
-import { Modelo } from "./modelo"
+import { AbstractEntity } from "./AbstactEntityModel"
+import { Cor } from "./enums/CorModel"
+import { Tipo } from "./enums/TipoModel"
+import { Modelo } from "./ModeloModel"
 
 export class Veiculo extends AbstractEntity {
     placa!: string

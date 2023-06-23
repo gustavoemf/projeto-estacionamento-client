@@ -1,4 +1,4 @@
-import { Condutor } from "@/model/condutor"
+import { Condutor } from "@/model/CondutorModel"
 import axios, { AxiosInstance } from "axios"
 
 export class CondutorClient {

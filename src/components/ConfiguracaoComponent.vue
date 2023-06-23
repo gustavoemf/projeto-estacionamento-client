@@ -1,8 +1,28 @@
 <template>
-    <div id="header-configuracao">
+    <form class="row g-3">
+        <div class="col-md-1">
+            <label for="inputValorHora" class="form-label">Valor Hora</label>
+            <input type="number" min="0" value="0" class="form-control" id="inputValorHora">
+        </div>
+        <div class="col-md-1">
+            <label for="inputValorMulta" class="form-label">Valor Multa</label>
+            <input type="number" min="0" value="0" class="form-control" id="inputValorMulta">
+        </div>
+        <div class="col-md-1">
+            <label for="inputState" class="form-label">Gerar desconto</label>
+            <select id="inputState" class="form-select">
+                <option selected>Sim</option>
+                <option>Não</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+    </form>
+    <!-- <div id="header-configuracao">
         <h2>CONFIGURAÇÕES</h2>
         <div class="configuracao-buttons">
-            <button type="button" class="btn btn-secondary">Salvar</button>
+            <button type="button" class="btn btn-success">Salvar</button>
         </div>
     </div>
     <div class="body-configuracao">
@@ -58,7 +78,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
   
 <script lang="ts">
@@ -158,4 +178,5 @@ export default defineComponent({
     h2 {
         margin-left: 30px;
     }
-}</style>
+}
+</style>

@@ -3,7 +3,7 @@
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Digite aqui o que deseja pesquisar..."
                 aria-label="Search">
-            <button class="btn btn-primary" type="submit">Buscar</button>
+            <button class="btn btn-secondary" type="submit">Buscar</button>
         </form>
         <div id="buttons-header-cadastro">
             <button type="button" class="btn btn-success">Novo</button>
