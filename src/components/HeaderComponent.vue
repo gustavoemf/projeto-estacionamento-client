@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg" style="background-color: #adb5bd">
+    <nav class="navbar navbar-expand-lg nav-justified" style="background-color: #adb5bd">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Estacionamento</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -9,8 +9,11 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <router-link to="/" class="nav-link active">Home</router-link>
-                    <router-link to="/registros" class="nav-link active">Registros</router-link>
-                    <router-link to="#" class="nav-link active">Sobre</router-link>
+                    <router-link to="/movimentacao-lista" class="nav-link active">Movimentação</router-link>
+                    <router-link to="/condutor-lista" class="nav-link active">Condutor</router-link>
+                    <router-link to="/veiculo-lista" class="nav-link active">Veículo</router-link>
+                    <router-link to="/modelo-lista" class="nav-link active">Modelo</router-link>
+                    <router-link to="/marca-lista" class="nav-link active">Marca</router-link>
                     <router-link to="/configuracoes" class="nav-link active">Configurações</router-link>
                 </div>
             </div>
