@@ -9,8 +9,8 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 export default defineComponent({
     name: 'CondutorFormulario',
     components: {
-        HeaderComponent
-    },
+    HeaderComponent
+},
 });
 </script>
   

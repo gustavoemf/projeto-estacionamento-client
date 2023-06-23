@@ -5,15 +5,15 @@
   
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HeaderComponent from '@/components/HeaderComponent.vue';
 import ConfiguracaoComponent from '@/components/ConfiguracaoComponent.vue';
+import HeaderComponent from '@/components/HeaderComponent.vue';
 
 export default defineComponent({
   name: 'Configuracoes',
   components: {
-    HeaderComponent,
-    ConfiguracaoComponent
-  },
+    ConfiguracaoComponent,
+    HeaderComponent
+},
 });
 </script>
   

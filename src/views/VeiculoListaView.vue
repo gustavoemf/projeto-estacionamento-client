@@ -11,8 +11,8 @@ import CadastroHeaderComponent from '@/components/CadastroHeaderComponent.vue';
 export default defineComponent({
   name: 'VeiculoLista',
   components: {
-    HeaderComponent,
-    CadastroHeaderComponent
+    CadastroHeaderComponent,
+    HeaderComponent
 },
 });
 </script>

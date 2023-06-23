@@ -9,7 +9,7 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 export default defineComponent({
     name: 'MovimentacaoFormulario',
     components: {
-        HeaderComponent
-    },
+    HeaderComponent
+},
 });
 </script>
