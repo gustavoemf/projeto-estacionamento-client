@@ -50,12 +50,23 @@ export default defineComponent({
         height: 40px;
         min-height: fit-content;
 
+        input, button {
+            border-radius: 0;
+        }
+
         input {
             padding-left: 10px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border: 1px solid black;
         }
 
         button {
             margin: 0;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            margin-left: -9px;
+            color: white;
         }
     }
 
@@ -68,7 +79,7 @@ export default defineComponent({
         justify-content: center;
         align-items: center;
         text-align: center;
-        color: black;
+        color: white;
     }
 }
 
@@ -85,6 +96,12 @@ export default defineComponent({
 #buttons-header-cadastro {
     display: flex;
     justify-content: center;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #ced4da;
 }
 
 @media only screen and (max-width: 900px) {

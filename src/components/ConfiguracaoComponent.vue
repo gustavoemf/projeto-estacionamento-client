@@ -1,84 +1,65 @@
 <template>
-    <form class="row g-3">
-        <div class="col-md-1">
-            <label for="inputValorHora" class="form-label">Valor Hora</label>
-            <input type="number" min="0" value="0" class="form-control" id="inputValorHora">
-        </div>
-        <div class="col-md-1">
-            <label for="inputValorMulta" class="form-label">Valor Multa</label>
-            <input type="number" min="0" value="0" class="form-control" id="inputValorMulta">
-        </div>
-        <div class="col-md-1">
-            <label for="inputState" class="form-label">Gerar desconto</label>
-            <select id="inputState" class="form-select">
-                <option selected>Sim</option>
-                <option>Não</option>
-            </select>
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </div>
-    </form>
-    <!-- <div id="header-configuracao">
+    <div id="header-configuracao">
         <h2>CONFIGURAÇÕES</h2>
         <div class="configuracao-buttons">
-            <button type="button" class="btn btn-success">Salvar</button>
+            <button type="submit" class="btn btn-success">Salvar</button>
         </div>
     </div>
     <div class="body-configuracao">
         <div class="form">
             <div class="form-valores">
                 <div class="form-element">
-                    <label for="valorHora">Valor Hora:</label>
-                    <input type="text" id="valorHora" placeholder="Valor da hora" />
+                    <label for="inputsValorHora" class="form-label">Valor Hora:</label>
+                    <input type="number" min="0" placeholder="Valor" id="inputsValorHora" class="form-control" />
                 </div>
                 <div class="form-element">
-                    <label for="valorMulta">Valor Multa:</label>
-                    <input type="text" id="valorMulta" placeholder="Valor da multa" />
+                    <label for="inputValorMulta" class="form-label">Valor Multa:</label>
+                    <input type="number" min="0" placeholder="Valor" id="inputValorMulta" class="form-control" />
                 </div>
             </div>
             <div class="form-expedientes">
                 <div class="form-element">
-                    <label for="inicioExpediente">Início expediente:</label>
-                    <input type="text" id="inicioExpediente" placeholder="Horário de início" />
+                    <label for="inputInicioExpediente" class="form-label">Início expediente:</label>
+                    <input type="time" id="inputInicioExpediente" class="form-control" />
                 </div>
                 <div class="form-element">
-                    <label for="fimExpediente">Fim expediente:</label>
-                    <input type="text" id="fimExpediente" placeholder="Horário do fim" />
-                </div>
-            </div>
-            <div class="form-gerar-desconto">
-                <div class="form-element">
-                    <label for="gerarDesconto">Gerar desconto:</label>
-                    <input type="text" id="gerarDesconto" placeholder="Gerar desconto?" />
+                    <label for="inputFimExpediente" class="form-label">Fim expediente:</label>
+                    <input type="time" id="inputFimExpediente" class="form-control" />
                 </div>
             </div>
             <div class="form-descontos">
                 <div class="form-element">
-                    <label for="tempoParaDesconto">Tempo para desconto:</label>
-                    <input type="text" id="tempoParaDesconto" placeholder="Tempo para desconto" />
+                    <label for="inputTempoParaDesconto" class="form-label">Tempo para desconto:</label>
+                    <input type="number" min="0" placeholder="Tempo" id="inputTempoParaDesconto" class="form-control" />
                 </div>
                 <div class="form-element">
-                    <label for="tempoGanhoDeDesconto">Tempo ganho de desconto:</label>
-                    <input type="text" id="tempoGanhoDeDesconto" placeholder="Tempo ganho" />
+                    <label for="inputTempoGanhoDeDesconto" class="form-label">Tempo ganho de desconto:</label>
+                    <input type="number" min="0" placeholder="Tempo" id="inputTempoGanhoDeDesconto" class="form-control" />
+                </div>
+                <div class="form-element">
+                    <label for="inputGerarDesconto" class="form-label">Gerar desconto</label>
+                    <select id="inputGerarDesconto" class="form-select">
+                        <option selected>Sim</option>
+                        <option>Não</option>
+                    </select>
                 </div>
             </div>
             <div class="form-vagas">
                 <div class="form-element">
-                    <label for="vagasCarro">Valor Hora:</label>
-                    <input type="text" id="vagasCarro" placeholder="Quantidade de vagas" />
+                    <label for="inputVagasCarro" class="form-label">Vagas carros:</label>
+                    <input type="number" min="0" placeholder="Quantidade" id="inputVagasCarro" class="form-control" />
                 </div>
                 <div class="form-element">
-                    <label for="vagasMoto">Valor Hora:</label>
-                    <input type="text" id="vagasMoto" placeholder="Quantidade de vagas" />
+                    <label for="inputVagasMoto" class="form-label">Vagas motos:</label>
+                    <input type="number" min="0" placeholder="Quantidade" id="inputVagasMoto" class="form-control" />
                 </div>
                 <div class="form-element">
-                    <label for="vagasVans">Valor Hora:</label>
-                    <input type="text" id="vagasVans" placeholder="Quantidade de vagas" />
+                    <label for="inputVagasVans" class="form-label">Vagas vans:</label>
+                    <input type="number" min="0" placeholder="Quantidade" id="inputVagasVans" class="form-control" />
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 </template>
   
 <script lang="ts">
@@ -94,7 +75,6 @@ export default defineComponent({
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: black;
 }
 
 #header-configuracao {
@@ -115,13 +95,14 @@ export default defineComponent({
 
     h2 {
         margin-left: 30px;
+        color: rgb(33, 37, 41);
     }
 
     button {
         margin-left: 15px;
         width: 100px;
         height: 40px;
-        color: black;
+        color: white;
     }
 }
 
@@ -129,11 +110,9 @@ export default defineComponent({
     .form {
         display: flex;
         flex-direction: column;
-        margin-left: 30px;
 
         .form-valores,
         .form-expedientes,
-        .form-gerar-desconto,
         .form-descontos,
         .form-vagas {
             display: flex;
@@ -142,29 +121,37 @@ export default defineComponent({
         }
 
         .form-element {
-            margin: 15px 0;
-        }
+            margin: 20px 20px;
 
-        label {
-            display: flex;
-            font-size: 14px;
-            color: #222;
-            font-weight: bold;
-        }
+            label {
+                color: black;
+            }
 
-        input[type='text'] {
-            margin: auto;
-            margin-top: 5px;
-            margin-left: 0;
-            display: block;
-            width: 90%;
-            padding: 10px;
-            outline: none;
-            border: 1px solid #aaa;
-            border-radius: 5px;
-            font-size: 0.9em;
+            input {
+                outline: none;
+                box-shadow: none;
+                border-color: #ced4da;
+            }
+
+            input,
+            select {
+                border: 1px solid black;
+                padding-left: 10px;
+            }
         }
     }
+}
+
+.form-select:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 @media only screen and (max-width: 500px) {

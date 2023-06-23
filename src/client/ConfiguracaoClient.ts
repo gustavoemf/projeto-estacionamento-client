@@ -1,4 +1,4 @@
-import { Configuracao } from "@/model/configuracao";
+import { Configuracao } from "@/model/ConfiguracaoModel";
 import axios, { AxiosInstance } from "axios";
 
 export class ConfiguracaoClient {
