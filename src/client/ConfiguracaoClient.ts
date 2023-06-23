@@ -1,4 +1,4 @@
-import { Configuracao } from "@/model/ConfiguracaoModel";
+import { ConfiguracaoModel } from "@/model/ConfiguracaoModel";
 import axios, { AxiosInstance } from "axios";
 
 export class ConfiguracaoClient {
@@ -11,16 +11,16 @@ export class ConfiguracaoClient {
         })
     }
 
-    public async findById(id: number) : Promise<Configuracao> {
+    public async findById(id: number) : Promise<ConfiguracaoModel> {
         try {
-            return(await this.axiosClient.get<Configuracao>(`?id=${id}`)).data
+            return(await this.axiosClient.get<ConfiguracaoModel>(`?id=${id}`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
         }
     }
 
-    public async cadastrar(configuracao: Configuracao) : Promise<void> {
+    public async cadastrar(configuracao: ConfiguracaoModel) : Promise<void> {
         try {
             return (await this.axiosClient.post(``, configuracao)).data
         }
@@ -29,7 +29,7 @@ export class ConfiguracaoClient {
         }
     }
 
-    public async atualizar(configuracao: Configuracao) : Promise<void> {
+    public async atualizar(configuracao: ConfiguracaoModel) : Promise<void> {
         try {
             return (await this.axiosClient.put(`/${configuracao.id}`, configuracao)).data
         }

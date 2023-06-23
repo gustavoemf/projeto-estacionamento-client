@@ -1,12 +1,7 @@
 import { AbstractEntity } from "./AbstactEntityModel"
-import { Marca } from "./MarcaModel"
+import { MarcaModel } from "./MarcaModel"
 
-export class Modelo extends AbstractEntity {
+export class ModeloModel extends AbstractEntity {
     nome!: string
-    marca!: Marca
-
-    constructor(){
-        super()
-        this.ativo = true
-    }
+    marca!: MarcaModel
 }

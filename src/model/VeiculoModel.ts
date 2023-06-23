@@ -1,18 +1,12 @@
 import { AbstractEntity } from "./AbstactEntityModel"
-import { Cor } from "./enums/CorModel"
-import { Tipo } from "./enums/TipoModel"
-import { Modelo } from "./ModeloModel"
+import { CorModel } from "./enums/CorModel"
+import { TipoModel } from "./enums/TipoModel"
+import { ModeloModel } from "./ModeloModel"
 
-export class Veiculo extends AbstractEntity {
+export class VeiculoModel extends AbstractEntity {
     placa!: string
-    modelo!: Modelo
-    cor!: Cor
-    tipo!: Tipo
+    modelo!: ModeloModel
+    cor!: CorModel
+    tipo!: TipoModel
     ano!: number
-
-    constructor(){
-        super()
-        this.ativo = true
-        this.modelo = new Modelo
-    }
 }

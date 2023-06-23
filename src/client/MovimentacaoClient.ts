@@ -1,4 +1,4 @@
-import { Movimentacao } from "@/model/MovimentacaoModel";
+import { MovimentacaoModel } from "@/model/MovimentacaoModel";
 import axios, { AxiosInstance } from "axios";
 
 
@@ -12,25 +12,25 @@ export class MovimentacaoClient {
         })
     }
 
-    public async findById(id: number) : Promise<Movimentacao> {
+    public async findById(id: number) : Promise<MovimentacaoModel> {
         try {
-            return (await this.axiosClient.get<Movimentacao>(`?id=${id}`)).data
+            return (await this.axiosClient.get<MovimentacaoModel>(`?id=${id}`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
         }
     }
 
-    public async findAll() : Promise<Movimentacao[]> {
+    public async findAll() : Promise<MovimentacaoModel[]> {
         try {
-            return (await this.axiosClient.get<Movimentacao[]>(`/lista`)).data
+            return (await this.axiosClient.get<MovimentacaoModel[]>(`/lista`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
         }
     }
 
-    public async cadastrar(movimentacao: Movimentacao) : Promise<void> {
+    public async cadastrar(movimentacao: MovimentacaoModel) : Promise<void> {
         try {
             return (await this.axiosClient.post(``, movimentacao)).data
         }
@@ -39,7 +39,7 @@ export class MovimentacaoClient {
         }
     }
 
-    public async atualizar(movimentacao: Movimentacao) : Promise<void> {
+    public async atualizar(movimentacao: MovimentacaoModel) : Promise<void> {
         try {
             return (await this.axiosClient.put(`/${movimentacao.id}`, movimentacao)).data
         }
@@ -48,7 +48,7 @@ export class MovimentacaoClient {
         }
     }
 
-    public async excluir(movimentacao: Movimentacao) : Promise<void> {
+    public async excluir(movimentacao: MovimentacaoModel) : Promise<void> {
         try {
             return (await this.axiosClient.delete(`/${movimentacao.id}`)).data
         }

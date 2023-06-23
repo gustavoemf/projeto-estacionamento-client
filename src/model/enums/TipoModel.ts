@@ -1,4 +1,4 @@
-export enum Tipo {
+export enum TipoModel {
     CARRO,
     MOTO,
     VAN

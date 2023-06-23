@@ -1,4 +1,4 @@
-export enum Cor {
+export enum CorModel {
     BRANCO,
     PRATA,
     PRETO,

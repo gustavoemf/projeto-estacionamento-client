@@ -1,6 +1,6 @@
 import { AbstractEntity } from "./AbstactEntityModel"
 
-export class Configuracao extends AbstractEntity{
+export class ConfiguracaoModel extends AbstractEntity{
     valorHora!: number
     valorMinutoMulta!: number
     inicioExpediente!: Date
@@ -11,9 +11,4 @@ export class Configuracao extends AbstractEntity{
     vagasCarro!: number
     vagasMoto!: number
     vagasVan!: number
-
-    constructor(){
-        super()
-        this.ativo = true
-    }
 }

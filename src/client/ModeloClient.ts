@@ -1,4 +1,4 @@
-import { Modelo } from "@/model/ModeloModel";
+import { ModeloModel } from "@/model/ModeloModel";
 import axios, { AxiosInstance } from "axios";
 
 
@@ -12,25 +12,25 @@ export class ModeloClient {
         })
     }
 
-    public async findById(id: number) : Promise<Modelo> {
+    public async findById(id: number) : Promise<ModeloModel> {
         try {
-            return (await this.axiosClient.get<Modelo>(`?id=${id}`)).data
+            return (await this.axiosClient.get<ModeloModel>(`?id=${id}`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
         }
     }
 
-    public async findAll() : Promise<Modelo[]> {
+    public async findAll() : Promise<ModeloModel[]> {
         try {
-            return (await this.axiosClient.get<Modelo[]>(`/lista`)).data
+            return (await this.axiosClient.get<ModeloModel[]>(`/lista`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
         }
     }
 
-    public async cadastrar(modelo: Modelo) : Promise<void> {
+    public async cadastrar(modelo: ModeloModel) : Promise<void> {
         try {
             return (await this.axiosClient.post(``, modelo)).data
         }
@@ -39,7 +39,7 @@ export class ModeloClient {
         }
     }
     
-    public async atualizar(modelo: Modelo) : Promise<void> {
+    public async atualizar(modelo: ModeloModel) : Promise<void> {
         try {
             return (await this.axiosClient.put(`/${modelo.id}`, modelo)).data
         }
@@ -48,7 +48,7 @@ export class ModeloClient {
         }
     }
 
-    public async excluir(modelo: Modelo) : Promise<void> {
+    public async excluir(modelo: ModeloModel) : Promise<void> {
         try {
             return (await this.axiosClient.delete(`/${modelo.id}`)).data
         }

@@ -1,10 +1,5 @@
 import { AbstractEntity } from "./AbstactEntityModel";
 
-export class Marca extends AbstractEntity {
+export class MarcaModel extends AbstractEntity {
     nome!: string
-
-    constructor(){
-        super()
-        this.ativo = true
-    }
 }

@@ -1,4 +1,4 @@
-import { Veiculo } from "@/model/VeiculoModel";
+import { VeiculoModel } from "@/model/VeiculoModel";
 import axios, { AxiosInstance } from "axios";
 
 
@@ -13,25 +13,25 @@ export class VeiculoClient {
         })
     }
 
-    public async findById(id: number) : Promise<Veiculo> {
+    public async findById(id: number) : Promise<VeiculoModel> {
         try {
-            return (await this.axiosClient.get<Veiculo>(`?id=${id}`)).data
+            return (await this.axiosClient.get<VeiculoModel>(`?id=${id}`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
         }
     }
 
-    public async findAll() : Promise<Veiculo[]> {
+    public async findAll() : Promise<VeiculoModel[]> {
         try {
-            return (await this.axiosClient.get<Veiculo[]>(`/lista`)).data
+            return (await this.axiosClient.get<VeiculoModel[]>(`/lista`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
         }
     }
 
-    public async cadastrar(veiculo: Veiculo) : Promise<void> {
+    public async cadastrar(veiculo: VeiculoModel) : Promise<void> {
         try {
             return (await this.axiosClient.post(``, veiculo)).data
         }
@@ -40,7 +40,7 @@ export class VeiculoClient {
         }
     }
 
-    public async atualizar(veiculo: Veiculo) : Promise<void> {
+    public async atualizar(veiculo: VeiculoModel) : Promise<void> {
         try {
             return (await this.axiosClient.put(`/${veiculo.id}`, veiculo)).data
         }
@@ -49,7 +49,7 @@ export class VeiculoClient {
         }
     }
 
-    public async excluir(veiculo: Veiculo) : Promise<void> {
+    public async excluir(veiculo: VeiculoModel) : Promise<void> {
         try {
             return (await this.axiosClient.delete(`/${veiculo.id}`)).data
         }

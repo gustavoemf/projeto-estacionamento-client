@@ -1,10 +1,10 @@
 import { AbstractEntity } from "./AbstactEntityModel";
-import { Condutor } from "./CondutorModel";
-import { Veiculo } from "./VeiculoModel";
+import { CondutorModel } from "./CondutorModel";
+import { VeiculoModel } from "./VeiculoModel";
 
-export class Movimentacao extends AbstractEntity {
-    veiculo!: Veiculo
-    condutor!: Condutor
+export class MovimentacaoModel extends AbstractEntity {
+    condutor!: CondutorModel
+    veiculo!: VeiculoModel
     entrada!: Date
     saida!: Date
     tempo!: Date
@@ -15,11 +15,4 @@ export class Movimentacao extends AbstractEntity {
     valorMulta!: Date
     valorNormal!: Date
     valorTotal!: Date
-
-    constructor(){
-        super()
-        this.ativo = true
-        this.veiculo = new Veiculo
-        this.condutor = new Condutor
-    }
 }
