@@ -1,11 +1,16 @@
 <template>
   <HeaderComponent />
-  <div id="header-configuracao">
-    <h2>CONFIGURAÇÕES</h2>
-    <div class="configuracao-buttons">
-      <button type="submit" class="btn btn-success">Salvar</button>
+  <div class="row" id="header-lista">
+    <div class="col-md-9 text-start" id="header-element-left">
+      <p class="fs-2">Configurações</p>
+    </div>
+    <div class="col-md-2">
+      <div class="d-grid gap-2" id="header-element-right">
+        <button type="submit" class="btn btn-success">Salva</button>
+      </div>
     </div>
   </div>
+  <hr />
   <div class="body-configuracao">
     <div class="form">
       <div class="form-valores">
@@ -76,43 +81,19 @@ export default defineComponent({
 </script>
   
 <style scoped lang="scss">
-* {
-  box-sizing: border-box;
-}
-
-#header-configuracao {
+#header-lista {
   display: flex;
-  justify-content: space-between;
-  overflow: hidden;
-  align-items: end;
-  padding-bottom: 15px;
-  margin: 0px 30px;
-  border-bottom: 1px black solid;
-
-  .configuracao-buttons {
-    display: flex;
-    flex-direction: row;
-    margin-top: 50px;
-    margin-right: 30px;
-  }
-
-  h2 {
-    margin-left: 30px;
-    color: rgb(33, 37, 41);
-  }
-
-  button {
-    margin-left: 15px;
-    width: 100px;
-    height: 40px;
-    color: white;
-  }
+  justify-content: center;
+  padding-bottom: 5px;
+  margin: 0px auto;
+  margin-top: 30px;
 }
 
 .body-configuracao {
   .form {
     display: flex;
     flex-direction: column;
+    margin-left: 20px;
 
     .form-valores,
     .form-expedientes,
@@ -125,6 +106,12 @@ export default defineComponent({
 
     .form-element {
       margin: 20px 20px;
+
+      .form-select:focus {
+        outline: none;
+        box-shadow: none;
+        border-color: #ced4da;
+      }
 
       label {
         color: black;
@@ -145,10 +132,9 @@ export default defineComponent({
   }
 }
 
-.form-select:focus {
-  outline: none;
-  box-shadow: none;
-  border-color: #ced4da;
+hr {
+  margin: auto;
+  width: 90%;
 }
 
 input::-webkit-outer-spin-button,

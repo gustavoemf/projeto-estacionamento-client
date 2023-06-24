@@ -11,6 +11,7 @@
                 </div>
             </div>
         </div>
+        <hr/>
         <div class="row">
             <div class="col-md-12">
                 <table class="table">
@@ -18,7 +19,7 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Ativo</th>
-                            <th scope="col" class="text-start">Marca</th>
+                            <th scope="col" class="text-start">Nome</th>
                             <th scope="col">Opção</th>
                         </tr>
                     </thead>
@@ -75,8 +76,7 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     padding-bottom: 5px;
-    margin: 0px 30px;
+    margin: 0px auto;
     margin-top: 30px;
-    border-bottom: 1px black solid;
 }
 </style>
