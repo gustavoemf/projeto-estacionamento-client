@@ -29,25 +29,25 @@
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label">Condutor *</label>
-        <input type="text" class="form-control" v-model="movimentacao.condutor" required>
+        <input type="text" class="form-control" placeholder="Insira o nome do condutor" v-model="movimentacao.condutor" required>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label">Veículo *</label>
-        <input type="text" class="form-control" v-model="movimentacao.veiculo" required>
+        <input type="text" class="form-control" placeholder="Insira a placa do veículo" v-model="movimentacao.veiculo" required>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label">Entrada *</label>
-        <input type="text" class="form-control" v-model="movimentacao.entrada" required>
+        <input type="datetime-local" class="form-control" v-model="movimentacao.entrada" required>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label">Saída</label>
-        <input type="text" class="form-control" v-model="movimentacao.saida" required>
+        <input type="datetime-local" class="form-control" v-model="movimentacao.saida" required>
       </div>
     </div>
   </div>
@@ -97,5 +97,6 @@ export default defineComponent({
   outline: none;
   box-shadow: none;
   border-color: #ced4da;
+  margin-bottom: 10px;
 }
 </style>
