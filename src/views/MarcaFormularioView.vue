@@ -1,10 +1,21 @@
 <template>
+    <HeaderComponent />
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 text-start">
-                <p class="fs-3"> Cadastrar de Marca </p>
+        <div class="row" id="header-lista">
+            <div class="col-md-7 text-start" id="header-element-left">
+                <p class="fs-3">Cadastrar/Editar Marca</p>
             </div>
-            <div class="col-md-2"> </div>
+            <div class="col-md-2">
+                <div class="d-grid gap-2" id="header-element-right">
+                    <button type="submit" class="btn btn-success">Salva</button>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="d-grid gap-2">
+                    <router-link type="button" class="btn btn-secondary" to="/marca-lista">Voltar
+                    </router-link>
+                </div>
+            </div>
         </div>
         <hr />
         <div v-if="mensagem.ativo" class="row">
@@ -26,11 +37,12 @@
 </template>
   
 <script lang="ts">
+import HeaderComponent from '@/components/HeaderComponent.vue';
 import { MarcaModel } from '@/model/MarcaModel';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name: 'MarcaFormulario',
+    name: "MarcaFormulario",
     data() {
         return {
             marca: new MarcaModel(),
@@ -40,16 +52,33 @@ export default defineComponent({
                 mensagem: "" as string,
                 css: "" as string
             }
-        }
+        };
     },
     computed: {
         id() {
-            return this.$route.query.id
+            return this.$route.query.id;
         },
         form() {
-            return this.$route.query.form
+            return this.$route.query.form;
         }
-    }
+    },
+    components: { HeaderComponent }
 });
 
 </script>
+
+<style scoped lang="scss">
+#header-lista {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5px;
+  margin: 0px auto;
+  margin-top: 30px;
+}
+
+.form-control {
+  outline: none;
+  box-shadow: none;
+  border-color: #ced4da;
+}
+</style>

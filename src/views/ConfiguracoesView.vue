@@ -1,12 +1,18 @@
 <template>
   <HeaderComponent />
   <div class="row" id="header-lista">
-    <div class="col-md-9 text-start" id="header-element-left">
+    <div class="col-md-7 text-start" id="header-element-left">
       <p class="fs-2">Configurações</p>
     </div>
     <div class="col-md-2">
       <div class="d-grid gap-2" id="header-element-right">
-        <button type="submit" class="btn btn-success">Salva</button>
+        <button type="submit" class="btn btn-success">Salvar</button>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="d-grid gap-2">
+        <router-link type="button" class="btn btn-secondary" to="/marca-lista">Voltar
+        </router-link>
       </div>
     </div>
   </div>

@@ -11,7 +11,6 @@
               </div>
           </div>
       </div>
-      <hr/>
       <div class="row">
           <div class="col-md-12">
               <table class="table">
@@ -88,5 +87,6 @@ export default defineComponent({
   padding-bottom: 5px;
   margin: 0px auto;
   margin-top: 30px;
+  border-bottom: 1px black solid;
 }
 </style>
