@@ -1,22 +1,7 @@
 <template>
   <HeaderComponent />
+  <FormHeaderComponent />
   <div class="container">
-    <div class="row" id="header-lista">
-      <div class="col-md-7 text-start" id="header-element-left">
-        <p class="fs-3">Cadastrar/Editar Veículo</p>
-      </div>
-      <div class="col-md-2">
-        <div class="d-grid gap-2" id="header-element-right">
-          <button type="submit" class="btn btn-success">Salvar</button>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="d-grid gap-2">
-          <router-link type="button" class="btn btn-secondary" to="/veiculo-lista">Voltar
-          </router-link>
-        </div>
-      </div>
-    </div>
     <hr />
     <div v-if="mensagem.ativo" class="row">
       <div class="col-md-12 text-start">
@@ -72,6 +57,7 @@
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import { VeiculoModel } from '@/model/VeiculoModel';
 import { defineComponent } from 'vue';
+import FormHeaderComponent from '@/components/FormHeaderComponent.vue';
 
 export default defineComponent({
   name: "VeiculoFormulario",
@@ -94,20 +80,12 @@ export default defineComponent({
       return this.$route.query.form;
     }
   },
-  components: { HeaderComponent }
+  components: { HeaderComponent, FormHeaderComponent }
 });
 
 </script>
 
 <style scoped lang="scss">
-#header-lista {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 5px;
-  margin: 0px auto;
-  margin-top: 30px;
-}
-
 .form-control,
 .form-select {
   outline: none;

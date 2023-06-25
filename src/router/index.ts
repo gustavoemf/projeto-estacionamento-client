@@ -8,54 +8,54 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView
   },
   {
-    path: '/movimentacao-lista',
+    path: '/movimentacao/lista',
     name: 'movimentacao-lista-view',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MovimentacaoListaView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/movimentacao/MovimentacaoListaView.vue')
   },
   {
-    path: '/movimentacao-formulario',
+    path: '/movimentacao/formulario',
     name: 'movimentacao-formulario-view',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MovimentacaoFormularioView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/movimentacao/MovimentacaoFormularioView.vue')
   },
   {
-    path: '/condutor-lista',
+    path: '/condutor/lista',
     name: 'condutor-lista-view',
-    component: () => import(/* webpackChunkName: "about" */ '../views/CondutorListaView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/condutor/CondutorListaView.vue')
   },
   {
-    path: '/condutor-formulario',
+    path: '/condutor/formulario',
     name: 'condutor-formulario-view',
-    component: () => import(/* webpackChunkName: "about" */ '../views/CondutorFormularioView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/condutor/CondutorFormularioView.vue')
   },
   {
-    path: '/veiculo-lista',
+    path: '/veiculo/lista',
     name: 'veiculo-lista-view',
-    component: () => import(/* webpackChunkName: "about" */ '../views/VeiculoListaView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/veiculo/VeiculoListaView.vue')
   },
   {
-    path: '/veiculo-formulario',
+    path: '/veiculo/formulario',
     name: 'veiculo-formulario-view',
-    component: () => import(/* webpackChunkName: "about" */ '../views/VeiculoFormularioView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/veiculo/VeiculoFormularioView.vue')
   },
   {
-    path: '/modelo-lista',
+    path: '/modelo/lista',
     name: 'modelo-lista-view',
-    component: () => import(/* webpackChunkName: "about" */ '../views/ModeloListaView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/modelo/ModeloListaView.vue')
   },
   {
-    path: '/modelo-formulario',
+    path: '/modelo/formulario',
     name: 'modelo-formulario-view',
-    component: () => import(/* webpackChunkName: "about" */ '../views/ModeloFormularioView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/modelo/ModeloFormularioView.vue')
   },
   {
-    path: '/marca-lista',
+    path: '/marca/lista',
     name: 'marca-lista-view',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MarcaListaView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/marca/MarcaListaView.vue')
   },
   {
-    path: '/marca-formulario',
+    path: '/marca/formulario',
     name: 'marca-formulario-view',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MarcaFormularioView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/marca/MarcaFormularioView.vue')
   },
   {
     path: '/configuracoes',

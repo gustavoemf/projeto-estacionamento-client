@@ -1,22 +1,7 @@
 <template>
   <HeaderComponent />
+  <FormHeaderComponent />
   <div class="container">
-    <div class="row" id="header-lista">
-      <div class="col-md-7 text-start" id="header-element-left">
-        <p class="fs-3">Cadastrar/Editar Condutor</p>
-      </div>
-      <div class="col-md-2">
-        <div class="d-grid gap-2" id="header-element-right">
-          <button type="submit" class="btn btn-success">Salvar</button>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="d-grid gap-2">
-          <router-link type="button" class="btn btn-secondary" to="/condutor-lista">Voltar
-          </router-link>
-        </div>
-      </div>
-    </div>
     <hr />
     <div v-if="mensagem.ativo" class="row">
       <div class="col-md-12 text-start">
@@ -28,20 +13,28 @@
     </div>
     <div class="row">
       <div class="col-md-6 text-start">
-        <label class="form-label">Nome *</label>
-        <input type="text" class="form-control" v-model="condutor.nome" required>
+        <label class="form-label">Condutor *</label>
+        <input type="text" class="form-control" placeholder="Insira o nome do condutor" v-model="movimentacao.condutor"
+          required>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 text-start">
-        <label class="form-label">CPF *</label>
-        <input type="text" class="form-control" v-model="condutor.cpf" required>
+        <label class="form-label">Veículo *</label>
+        <input type="text" class="form-control" placeholder="Insira a placa do veículo" v-model="movimentacao.veiculo"
+          required>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 text-start">
-        <label class="form-label">Telefone *</label>
-        <input type="text" class="form-control" v-model="condutor.telefone" required>
+        <label class="form-label">Entrada *</label>
+        <input type="datetime-local" class="form-control" v-model="movimentacao.entrada" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 text-start">
+        <label class="form-label">Saída</label>
+        <input type="datetime-local" class="form-control" v-model="movimentacao.saida" required>
       </div>
     </div>
   </div>
@@ -49,14 +42,16 @@
 
 <script lang="ts">
 import HeaderComponent from '@/components/HeaderComponent.vue';
-import { CondutorModel } from '@/model/CondutorModel';
+import { MovimentacaoModel } from '@/model/MovimentacaoModel';
 import { defineComponent } from 'vue';
+import FormHeaderComponent from '@/components/FormHeaderComponent.vue';
 
 export default defineComponent({
-  name: "CondutorFormulario",
+  name: "MovimentacaoFormulario",
+  components: { HeaderComponent, FormHeaderComponent },
   data() {
     return {
-      condutor: new CondutorModel (),
+      movimentacao: new MovimentacaoModel(),
       mensagem: {
         ativo: false as boolean,
         titulo: "" as string,
@@ -72,24 +67,16 @@ export default defineComponent({
     form() {
       return this.$route.query.form;
     }
-  },
-  components: { HeaderComponent }
+  }
 });
 
 </script>
 
 <style scoped lang="scss">
-#header-lista {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 5px;
-  margin: 0px auto;
-  margin-top: 30px;
-}
-
 .form-control {
   outline: none;
   box-shadow: none;
   border-color: #ced4da;
+  margin-bottom: 10px;
 }
 </style>

@@ -1,17 +1,8 @@
 <template>
     <HeaderComponent />
+    <ListHeaderComponent />
     <div class="container">
-        <div class="row" id="header-lista">
-            <div class="col-md-9 text-start" id="header-element-left">
-                <p class="fs-3"> Lista de Condutores </p>
-            </div>
-            <div class="col-md-2">
-                <div class="d-grid gap-2" id="header-element-right">
-                    <router-link type="button" class="btn btn-success" to="/condutor-formulario">Cadastrar</router-link>
-                </div>
-            </div>
-        </div>
-        <hr/>
+        <hr />
         <div class="row">
             <div class="col-md-12">
                 <table class="table">
@@ -23,7 +14,7 @@
                             <th scope="col" class="text-start">CPF</th>
                             <th scope="col" class="text-start">Telefone</th>
                             <th scope="col">Pago</th>
-                            <th scope="col">Desconto</th>
+                            <th scope="col">Desconto</th>   
                             <th scope="col">Opção</th>
                         </tr>
                     </thead>
@@ -65,11 +56,13 @@
 import { defineComponent } from 'vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import { CondutorModel } from '@/model/CondutorModel';
+import ListHeaderComponent from '@/components/ListHeaderComponent.vue';
 
 export default defineComponent({
     name: 'CondutorLista',
     components: {
-        HeaderComponent
+        HeaderComponent,
+        ListHeaderComponent
     },
     data() {
         return {
@@ -78,13 +71,3 @@ export default defineComponent({
     }
 });
 </script>
-
-<style scoped lang="scss">
-#header-lista {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 5px;
-    margin: 0px auto;
-    margin-top: 30px;
-}
-</style>

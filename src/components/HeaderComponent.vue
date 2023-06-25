@@ -17,15 +17,12 @@
                             Registros
                         </a>
                         <ul class="dropdown-menu bg-dark">
-                            <li><router-link to="/movimentacao-lista" class="nav-link active">Movimentação</router-link></li>
-                            <li><router-link to="/condutor-lista" class="nav-link active">Condutor</router-link></li>
-                            <li><router-link to="/veiculo-lista" class="nav-link active">Veículo</router-link></li>
-                            <li><router-link to="/modelo-lista" class="nav-link active">Modelo</router-link></li>
-                            <li><router-link to="/marca-lista" class="nav-link active">Marca</router-link></li>
+                            <li><router-link to="/movimentacao/lista" class="nav-link active">Movimentação</router-link></li>
+                            <li><router-link to="/condutor/lista" class="nav-link active">Condutor</router-link></li>
+                            <li><router-link to="/veiculo/lista" class="nav-link active">Veículo</router-link></li>
+                            <li><router-link to="/modelo/lista" class="nav-link active">Modelo</router-link></li>
+                            <li><router-link to="/marca/lista" class="nav-link active">Marca</router-link></li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">About</a>
                     </li>
                     <li class="nav-item">
                         <router-link to="/configuracoes" class="nav-link active">Configurações</router-link>

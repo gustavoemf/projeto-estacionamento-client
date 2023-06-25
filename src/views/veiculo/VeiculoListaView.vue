@@ -1,16 +1,7 @@
 <template>
   <HeaderComponent />
+  <ListHeaderComponent />
   <div class="container">
-      <div class="row" id="header-lista">
-          <div class="col-md-9 text-start" id="header-element-left">
-              <p class="fs-3"> Lista de Veículos </p>
-          </div>
-          <div class="col-md-2">
-              <div class="d-grid gap-2" id="header-element-right">
-                  <router-link type="button" class="btn btn-success" to="/veiculo-formulario">Cadastrar</router-link>
-              </div>
-          </div>
-      </div>
       <hr/>
       <div class="row">
           <div class="col-md-12">
@@ -65,12 +56,14 @@
 import { defineComponent } from 'vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import { VeiculoModel } from '@/model/VeiculoModel';
+import ListHeaderComponent from '@/components/ListHeaderComponent.vue';
 
 export default defineComponent({
   name: 'VeiculoLista',
   components: {
-      HeaderComponent
-  },
+    HeaderComponent,
+    ListHeaderComponent
+},
   data() {
       return {
           veiculosLista: new Array<VeiculoModel>()
@@ -78,13 +71,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style scoped lang="scss">
-#header-lista {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 5px;
-  margin: 0px auto;
-  margin-top: 30px;
-}
-</style>
