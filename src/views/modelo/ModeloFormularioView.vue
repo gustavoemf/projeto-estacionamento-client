@@ -3,14 +3,6 @@
     <FormHeaderComponent />
     <div class="container">
         <hr />
-        <div v-if="mensagem.ativo" class="row">
-            <div class="col-md-12 text-start">
-                <div :class="mensagem.css" role="alert">
-                    <strong>{{ mensagem.titulo }}</strong> {{ mensagem.mensagem }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-6 text-start">
                 <label class="form-label">Nome do Modelo *</label>
@@ -31,18 +23,17 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 import { ModeloModel } from '@/model/ModeloModel';
 import { defineComponent } from 'vue';
 import FormHeaderComponent from '@/components/FormHeaderComponent.vue';
+import ModeloClient from '@/client/ModeloClient';
 
 export default defineComponent({
     name: "ModeloFormulario",
+    components: {
+        HeaderComponent,
+        FormHeaderComponent
+    },
     data() {
         return {
-            modelo: new ModeloModel(),
-            mensagem: {
-                ativo: false as boolean,
-                titulo: "" as string,
-                mensagem: "" as string,
-                css: "" as string
-            }
+            modelo: new ModeloModel()
         };
     },
     computed: {
@@ -53,7 +44,18 @@ export default defineComponent({
             return this.$route.query.form;
         }
     },
-    components: { HeaderComponent, FormHeaderComponent }
+    methods: {
+        onClickCadastrar() {
+            ModeloClient.cadastrar(this.modelo)
+                .then((sucess) => {
+                    this.modelo = new ModeloModel();
+                    console.log(sucess);
+                })
+                .catch((error) => {
+                    console.log(error.data);
+                });
+        },
+    }
 });
 
 </script>

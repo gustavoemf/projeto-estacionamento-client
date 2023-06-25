@@ -3,14 +3,6 @@
   <FormHeaderComponent />
   <div class="container">
     <hr />
-    <div v-if="mensagem.ativo" class="row">
-      <div class="col-md-12 text-start">
-        <div :class="mensagem.css" role="alert">
-          <strong>{{ mensagem.titulo }}</strong> {{ mensagem.mensagem }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label">Nome *</label>
@@ -26,7 +18,8 @@
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label">Telefone *</label>
-        <input type="tel" class="form-control" pattern="[0-9]{2}\s?[0-9]{4,5}-?[0-9]{4}" v-model="condutor.telefone" required>
+        <input type="tel" class="form-control" pattern="[0-9]{2}\s?[0-9]{4,5}-?[0-9]{4}" v-model="condutor.telefone"
+          required>
       </div>
     </div>
   </div>
@@ -37,18 +30,17 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 import { CondutorModel } from '@/model/CondutorModel';
 import { defineComponent } from 'vue';
 import FormHeaderComponent from '@/components/FormHeaderComponent.vue';
+import CondutorClient from '@/client/CondutorClient';
 
 export default defineComponent({
   name: "CondutorFormulario",
+  components: {
+    HeaderComponent,
+    FormHeaderComponent
+  },
   data() {
     return {
-      condutor: new CondutorModel (),
-      mensagem: {
-        ativo: false as boolean,
-        titulo: "" as string,
-        mensagem: "" as string,
-        css: "" as string
-      }
+      condutor: new CondutorModel()
     };
   },
   computed: {
@@ -59,7 +51,18 @@ export default defineComponent({
       return this.$route.query.form;
     }
   },
-  components: { HeaderComponent, FormHeaderComponent }
+  methods: {
+    onClickCadastrar() {
+      CondutorClient.cadastrar(this.condutor)
+        .then((sucess) => {
+          this.condutor = new CondutorModel();
+          console.log(sucess);
+        })
+        .catch((error) => {
+          console.log(error.data);
+        });
+    },
+  }
 });
 
 </script>

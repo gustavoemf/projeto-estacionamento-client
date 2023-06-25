@@ -3,15 +3,6 @@
     <FormHeaderComponent />
     <div class="container">
         <hr />
-        <div v-if="mensagem.ativo" class="row">
-            <div class="col-md-12 text-start">
-                <div :class="mensagem.css" role="alert">
-                    <strong>{{ mensagem.titulo }}</strong> {{ mensagem.mensagem }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            </div>
-        </div>
-
         <div class="row">
             <div class="col-md-6 text-start">
                 <label class="form-label">Nome da Marca *</label>
@@ -26,18 +17,17 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 import { MarcaModel } from '@/model/MarcaModel';
 import { defineComponent } from 'vue';
 import FormHeaderComponent from '@/components/FormHeaderComponent.vue';
+import MarcaClient from '@/client/MarcaClient';
 
 export default defineComponent({
     name: "MarcaFormulario",
+    components: {
+        HeaderComponent,
+        FormHeaderComponent
+    },
     data() {
         return {
-            marca: new MarcaModel(),
-            mensagem: {
-                ativo: false as boolean,
-                titulo: "" as string,
-                mensagem: "" as string,
-                css: "" as string
-            }
+            marca: new MarcaModel()
         };
     },
     computed: {
@@ -48,7 +38,18 @@ export default defineComponent({
             return this.$route.query.form;
         }
     },
-    components: { HeaderComponent, FormHeaderComponent }
+    methods: {
+        onClickCadastrar() {
+            MarcaClient.cadastrar(this.marca)
+                .then((sucess) => {
+                    this.marca = new MarcaModel();
+                    console.log(sucess);
+                })
+                .catch((error) => {
+                    console.log(error.data);
+                });
+        },
+    }
 });
 
 </script>

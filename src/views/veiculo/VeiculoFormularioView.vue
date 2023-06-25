@@ -3,14 +3,6 @@
   <FormHeaderComponent />
   <div class="container">
     <hr />
-    <div v-if="mensagem.ativo" class="row">
-      <div class="col-md-12 text-start">
-        <div :class="mensagem.css" role="alert">
-          <strong>{{ mensagem.titulo }}</strong> {{ mensagem.mensagem }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label">Placa *</label>
@@ -20,7 +12,8 @@
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label">Modelo *</label>
-        <input type="text" class="form-control" placeholder="Insira o modelo do veículo" v-model="veiculo.modelo" required>
+        <input type="text" class="form-control" placeholder="Insira o modelo do veículo" v-model="veiculo.modelo"
+          required>
       </div>
     </div>
     <div class="row">
@@ -47,7 +40,8 @@
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label">Ano *</label>
-        <input type="number" min="0" class="form-control" placeholder="Insira o ano do veículo" v-model="veiculo.ano" required>
+        <input type="number" min="0" class="form-control" placeholder="Insira o ano do veículo" v-model="veiculo.ano"
+          required>
       </div>
     </div>
   </div>
@@ -58,18 +52,17 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 import { VeiculoModel } from '@/model/VeiculoModel';
 import { defineComponent } from 'vue';
 import FormHeaderComponent from '@/components/FormHeaderComponent.vue';
+import VeiculoClient from '@/client/VeiculoClient';
 
 export default defineComponent({
   name: "VeiculoFormulario",
+  components: {
+    HeaderComponent,
+    FormHeaderComponent
+  },
   data() {
     return {
-      veiculo: new VeiculoModel(),
-      mensagem: {
-        ativo: false as boolean,
-        titulo: "" as string,
-        mensagem: "" as string,
-        css: "" as string
-      }
+      veiculo: new VeiculoModel()
     };
   },
   computed: {
@@ -80,7 +73,18 @@ export default defineComponent({
       return this.$route.query.form;
     }
   },
-  components: { HeaderComponent, FormHeaderComponent }
+  methods: {
+    onClickCadastrar() {
+      VeiculoClient.cadastrar(this.veiculo)
+        .then((sucess) => {
+          this.veiculo = new VeiculoModel();
+          console.log(sucess);
+        })
+        .catch((error) => {
+          console.log(error.data);
+        });
+    },
+  }
 });
 
 </script>

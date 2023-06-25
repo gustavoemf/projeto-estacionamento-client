@@ -28,10 +28,9 @@
                                         :to="{ name: 'marca-formulario-editar-view', query: { id: item.id, form: 'editar' } }">
                                         Editar
                                     </router-link>
-                                    <router-link type="button" class="btn btn-sm btn-danger"
-                                        :to="{ name: 'marca-formulario-excluir-view', query: { id: item.id, form: 'excluir' } }">
+                                    <button type="button" class="btn btn-sm btn-danger" @click="onClickExcluir(item.id)">
                                         Excluir
-                                    </router-link>
+                                    </button>
                                 </div>
                             </th>
                         </tr>
@@ -57,6 +56,7 @@ export default defineComponent({
     },
     data() {
         return {
+            marca: new MarcaModel,
             marcasList: new Array<MarcaModel>()
         }
     },
@@ -72,7 +72,19 @@ export default defineComponent({
                 .catch(error => {
                     console.log(error);
                 });
-        }
-    }
+        },
+        onClickExcluir(id: number) {
+            MarcaClient.excluir(id)
+                .then((sucess) => {
+                    this.marca = new MarcaModel();
+                    console.log(sucess);
+                    this.findAll();
+                })
+                .catch((error) => {
+                    console.log(error.data);
+                });
+        },
+    },
+
 });
 </script>

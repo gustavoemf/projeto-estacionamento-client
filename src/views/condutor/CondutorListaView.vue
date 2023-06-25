@@ -10,9 +10,9 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Ativo</th>
-                            <th scope="col" class="text-start">Nome</th>
-                            <th scope="col" class="text-start">CPF</th>
-                            <th scope="col" class="text-start">Telefone</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">CPF</th>
+                            <th scope="col">Telefone</th>
                             <th scope="col">Pago</th>
                             <th scope="col">Desconto</th>
                             <th scope="col">Opção</th>
@@ -29,18 +29,17 @@
                             <th class="text-start">{{ item.nome }}</th>
                             <th class="text-start">{{ item.cpf }}</th>
                             <th class="text-start">{{ item.telefone }}</th>
-                            <th class="text-start">{{ item.tempoPago }}</th>
-                            <th class="text-start">{{ item.tempoDesconto }}</th>
+                            <th class="text-end">{{ item.tempoPago }}</th>
+                            <th class="text-end">{{ item.tempoDesconto }}</th>
                             <th class="col-md-2">
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     <router-link type="button" class="btn btn-sm btn-warning"
                                         :to="{ name: 'marca-formulario-editar-view', query: { id: item.id, form: 'editar' } }">
                                         Editar
                                     </router-link>
-                                    <router-link type="button" class="btn btn-sm btn-danger"
-                                        :to="{ name: 'marca-formulario-excluir-view', query: { id: item.id, form: 'excluir' } }">
+                                    <button type="button" class="btn btn-sm btn-danger" @click="onClickExcluir(item.id)">
                                         Excluir
-                                    </router-link>
+                                    </button>
                                 </div>
                             </th>
                         </tr>
@@ -67,6 +66,7 @@ export default defineComponent({
     },
     data() {
         return {
+            condutor: new CondutorModel(),
             condutoresLista: new Array<CondutorModel>()
         }
     },
@@ -79,7 +79,18 @@ export default defineComponent({
                 .catch(error => {
                     console.log(error);
                 });
-        }
+        },
+        onClickExcluir(id: number) {
+            CondutorClient.excluir(id)
+                .then((sucess) => {
+                    this.condutor = new CondutorModel();
+                    console.log(sucess);
+                    this.findAll();
+                })
+                .catch((error) => {
+                    console.log(error.data);
+                });
+        },
     }
 });
 </script>

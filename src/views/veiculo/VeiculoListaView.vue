@@ -36,10 +36,9 @@
                                         :to="{ name: 'marca-formulario-editar-view', query: { id: item.id, form: 'editar' } }">
                                         Editar
                                     </router-link>
-                                    <router-link type="button" class="btn btn-sm btn-danger"
-                                        :to="{ name: 'marca-formulario-excluir-view', query: { id: item.id, form: 'excluir' } }">
+                                    <button type="button" class="btn btn-sm btn-danger" @click="onClickExcluir(item.id)">
                                         Excluir
-                                    </router-link>
+                                    </button>
                                 </div>
                             </th>
                         </tr>
@@ -65,6 +64,7 @@ export default defineComponent({
     },
     data() {
         return {
+            veiculo: new VeiculoModel,
             veiculosLista: new Array<VeiculoModel>()
         }
     },
@@ -76,6 +76,17 @@ export default defineComponent({
                 })
                 .catch(error => {
                     console.log(error);
+                });
+        },
+        onClickExcluir(id: number) {
+            VeiculoClient.excluir(id)
+                .then((sucess) => {
+                    this.veiculo = new VeiculoModel();
+                    console.log(sucess);
+                    this.findAll();
+                })
+                .catch((error) => {
+                    console.log(error.data);
                 });
         }
     }

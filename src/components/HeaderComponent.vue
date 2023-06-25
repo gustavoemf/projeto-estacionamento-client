@@ -40,5 +40,3 @@ export default defineComponent({
     name: "HeaderComponent",
 });
 </script>
-
-<style scoped lang="scss"></style>
