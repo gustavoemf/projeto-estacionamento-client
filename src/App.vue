@@ -5,14 +5,6 @@
 <style lang="scss">
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-* {
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-}
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -12,7 +12,11 @@
         <div class="row">
             <div class="col-md-6 text-start">
                 <label class="form-label">Marca *</label>
-                <input type="text" class="form-control" v-model="modelo.marca" required>
+                <select class="form-select" aria-label="Default select example" v-model="modelo.marca">
+                    <option :value="item" v-for="item in marcaList" :key="item.id">
+                        {{ item.nome }}
+                    </option>
+                </select>
             </div>
         </div>
     </div>
@@ -24,6 +28,8 @@ import { ModeloModel } from '@/model/ModeloModel';
 import { defineComponent } from 'vue';
 import FormHeaderComponent from '@/components/FormHeaderComponent.vue';
 import ModeloClient from '@/client/ModeloClient';
+import MarcaClient from '@/client/MarcaClient';
+import { MarcaModel } from '@/model/MarcaModel';
 
 export default defineComponent({
     name: "ModeloFormulario",
@@ -33,7 +39,8 @@ export default defineComponent({
     },
     data() {
         return {
-            modelo: new ModeloModel()
+            modelo: new ModeloModel(),
+            marcaList: [] as MarcaModel[]
         };
     },
     computed: {
@@ -55,12 +62,25 @@ export default defineComponent({
                     console.log(error.data);
                 });
         },
+        selectMarcaList() {
+            MarcaClient.findAll()
+                .then((response) => {
+                    this.marcaList = response;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
     }
 });
 
 </script>
 
 <style scoped lang="scss">
+.row {
+    margin-top: 10px;
+}
+
 .form-control {
     outline: none;
     box-shadow: none;

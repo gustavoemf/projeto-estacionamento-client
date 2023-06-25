@@ -5,16 +5,22 @@
     <hr />
     <div class="row">
       <div class="col-md-6 text-start">
-        <label class="form-label">Condutor *</label>
-        <input type="text" class="form-control" placeholder="Insira o nome do condutor" v-model="movimentacao.condutor"
-          required>
+        <label class="form-label"> Condutor *</label>
+        <select class="form-select" v-model="movimentacao.veiculo" aria-label="Default select example">
+          <option :value="item" v-for="item in veiculoList" :key="item.id">
+            {{ item.placa }}
+          </option>
+        </select>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 text-start">
-        <label class="form-label">Veículo *</label>
-        <input type="text" class="form-control" placeholder="Insira a placa do veículo" v-model="movimentacao.veiculo"
-          required>
+        <label class="form-label"> Veículo *</label>
+        <select class="form-select" v-model="movimentacao.condutor" aria-label="Default select example">
+          <option :value="item" v-for="item in condutorList" :key="item.id">
+            {{ item.nome }}
+          </option>
+        </select>
       </div>
     </div>
     <div class="row">
@@ -38,6 +44,10 @@ import { MovimentacaoModel } from '@/model/MovimentacaoModel';
 import { defineComponent } from 'vue';
 import FormHeaderComponent from '@/components/FormHeaderComponent.vue';
 import MovimentacaoClient from '@/client/MovimentacaoClient';
+import { CondutorModel } from '@/model/CondutorModel';
+import { VeiculoModel } from '@/model/VeiculoModel';
+import CondutorClient from '@/client/CondutorClient';
+import VeiculoClient from '@/client/VeiculoClient';
 
 export default defineComponent({
   name: "MovimentacaoFormulario",
@@ -45,6 +55,8 @@ export default defineComponent({
   data() {
     return {
       movimentacao: new MovimentacaoModel(),
+      condutorList: [] as CondutorModel[],
+      veiculoList: [] as VeiculoModel[]
     };
   },
   computed: {
@@ -66,13 +78,35 @@ export default defineComponent({
           console.log(error.data);
         });
     },
+    selectCondutorList() {
+      CondutorClient.findAll()
+        .then((response) => {
+          this.condutorList = response;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    selectTipoList() {
+      VeiculoClient.findAll()
+        .then((response) => {
+          this.veiculoList = response;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   }
 });
 
 </script>
 
 <style scoped lang="scss">
-.form-control {
+.row {
+  margin-top: 10px;
+}
+
+.form-control, .form-select {
   outline: none;
   box-shadow: none;
   border-color: #ced4da;

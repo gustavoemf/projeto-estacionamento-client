@@ -55,6 +55,10 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+.row {
+    margin-top: 10px;
+}
+
 .form-control {
     outline: none;
     box-shadow: none;

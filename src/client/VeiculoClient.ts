@@ -1,4 +1,6 @@
 import { VeiculoModel } from "@/model/VeiculoModel";
+import { CorModel } from "@/model/enums/CorModel";
+import { TipoModel } from "@/model/enums/TipoModel";
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 export class VeiculoClient {
@@ -22,6 +24,28 @@ export class VeiculoClient {
   public async findAll(): Promise<VeiculoModel[]> {
     try {
       return (await this.axiosClient.get<VeiculoModel[]>(`/lista`)).data;
+    } catch (error: any) {
+      return Promise.reject(error.response);
+    }
+  }
+
+  public async findCor(): Promise<CorModel[]> {
+    try {
+      const response: AxiosResponse<CorModel[]> = await this.axiosClient.get(
+        "/cores"
+      );
+      return response.data;
+    } catch (error: any) {
+      return Promise.reject(error.response);
+    }
+  }
+
+  public async findTipo(): Promise<TipoModel[]> {
+    try {
+      const response: AxiosResponse<TipoModel[]> = await this.axiosClient.get(
+        "/tipos"
+      );
+      return response.data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }

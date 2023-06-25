@@ -81,6 +81,10 @@ export default defineComponent({
 <style scoped lang="scss">
 .form-element {
   margin-top: 10px;
+
+  select {
+    width: 115px;
+  }
 }
 
 .form-control,
