@@ -56,3 +56,4 @@ export class CondutorClient {
         }
     }
 }
+export default new CondutorClient();

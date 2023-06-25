@@ -57,3 +57,4 @@ export class ModeloClient {
         }
     }
 }
+export default new ModeloClient();

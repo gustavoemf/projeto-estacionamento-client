@@ -57,3 +57,4 @@ export class MovimentacaoClient {
         }
     }
 }
+export default new MovimentacaoClient();

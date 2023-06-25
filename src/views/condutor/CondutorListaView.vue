@@ -14,7 +14,7 @@
                             <th scope="col" class="text-start">CPF</th>
                             <th scope="col" class="text-start">Telefone</th>
                             <th scope="col">Pago</th>
-                            <th scope="col">Desconto</th>   
+                            <th scope="col">Desconto</th>
                             <th scope="col">Opção</th>
                         </tr>
                     </thead>
@@ -57,6 +57,7 @@ import { defineComponent } from 'vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import { CondutorModel } from '@/model/CondutorModel';
 import ListHeaderComponent from '@/components/ListHeaderComponent.vue';
+import CondutorClient from '@/client/CondutorClient';
 
 export default defineComponent({
     name: 'CondutorLista',
@@ -67,6 +68,17 @@ export default defineComponent({
     data() {
         return {
             condutoresLista: new Array<CondutorModel>()
+        }
+    },
+    methods: {
+        findAll() {
+            CondutorClient.findAll()
+                .then(sucess => {
+                    this.condutoresLista = sucess
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
 });

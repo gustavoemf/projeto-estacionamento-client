@@ -16,7 +16,6 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-
                         <tr v-for="item in modelosList" :key="item.id">
                             <th class="col-md-1">{{ item.id }}</th>
                             <th class="col-md-2">
@@ -38,7 +37,6 @@
                                 </div>
                             </th>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -51,6 +49,7 @@ import { defineComponent } from 'vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import { ModeloModel } from '@/model/ModeloModel';
 import ListHeaderComponent from '@/components/ListHeaderComponent.vue';
+import ModeloClient from '@/client/ModeloClient';
 
 export default defineComponent({
     name: 'ModeloLista',
@@ -61,6 +60,17 @@ export default defineComponent({
     data() {
         return {
             modelosList: new Array<ModeloModel>()
+        }
+    },
+    methods: {
+        findAll() {
+            ModeloClient.findAll()
+                .then(sucess => {
+                    this.modelosList = sucess
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
 });

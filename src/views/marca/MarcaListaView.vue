@@ -15,7 +15,6 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-
                         <tr v-for="item in marcasList" :key="item.id">
                             <th class="col-md-1">{{ item.id }}</th>
                             <th class="col-md-2">
@@ -36,7 +35,6 @@
                                 </div>
                             </th>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -49,6 +47,7 @@ import { defineComponent } from 'vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import { MarcaModel } from '@/model/MarcaModel'
 import ListHeaderComponent from '@/components/ListHeaderComponent.vue';
+import MarcaClient from '@/client/MarcaClient';
 
 export default defineComponent({
     name: 'MarcaLista',
@@ -59,6 +58,20 @@ export default defineComponent({
     data() {
         return {
             marcasList: new Array<MarcaModel>()
+        }
+    },
+    mounted() {
+        this.findAll();
+    },
+    methods: {
+        findAll() {
+            MarcaClient.findAll()
+                .then(sucess => {
+                    this.marcasList = sucess
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
 });

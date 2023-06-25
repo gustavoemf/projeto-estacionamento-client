@@ -45,7 +45,6 @@
                                 </div>
                             </th>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -58,6 +57,7 @@ import { defineComponent } from 'vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import { MovimentacaoModel } from '@/model/MovimentacaoModel';
 import ListHeaderComponent from '@/components/ListHeaderComponent.vue';
+import MovimentacaoClient from '@/client/MovimentacaoClient';
 
 export default defineComponent({
     name: 'MovimentacaoLista',
@@ -68,6 +68,17 @@ export default defineComponent({
     data() {
         return {
             movimentacoesLista: new Array<MovimentacaoModel>()
+        }
+    },
+    methods: {
+        findAll() {
+            MovimentacaoClient.findAll()
+                .then(sucess => {
+                    this.movimentacoesLista = sucess
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
 });
