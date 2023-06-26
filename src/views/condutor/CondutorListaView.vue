@@ -32,7 +32,7 @@
                             <th class="text-end">{{ item.tempoPago }}</th>
                             <th class="text-end">{{ item.tempoDesconto }}</th>
                             <th class="col-md-2">
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <div class="btn-group" role="group">
                                     <router-link type="button" class="btn btn-sm btn-warning"
                                         :to="{ name: 'marca-formulario-editar-view', query: { id: item.id, form: 'editar' } }">
                                         Editar

@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label">Modelo *</label>
-        <select class="form-select" aria-label="Default select example" v-model="veiculo.modelo">
+        <select class="form-select" v-model="veiculo.modelo" required>
           <option :value="item" v-for="item in modeloList" :key="item.id">
             {{ item.nome }}
           </option>
@@ -22,7 +22,7 @@
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label"> Cor *</label>
-        <select class="form-select" aria-label="Default select example" v-model="veiculo.cor" required>
+        <select class="form-select" v-model="veiculo.cor" required>
           <option :value="item" v-for="item in corList" :key="item">
             {{ item }}
           </option>
@@ -32,7 +32,7 @@
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label"> Tipo *</label>
-        <select class="form-select" aria-label="Default select example" v-model="veiculo.tipo" required>
+        <select class="form-select" v-model="veiculo.tipo" required>
           <option :value="item" v-for="item in tipoList" :key="item">
             {{ item }}
           </option>

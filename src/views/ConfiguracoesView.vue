@@ -27,15 +27,17 @@
     <div class="row">
       <div class="col-md-3 text-start form-element">
         <label class="form-label">Tempo para desconto</label>
-        <input type="number" min="0" class="form-control" placeholder="Tempo inteiro em horas" v-model="configuracao.tempoParaDesconto" required>
+        <input type="number" min="0" class="form-control" placeholder="Tempo inteiro em horas"
+          v-model="configuracao.tempoParaDesconto" required>
       </div>
       <div class="col-md-3 text-start form-element">
         <label class="form-label">Tempo ganho de desconto</label>
-        <input type="number" min="0" class="form-control" placeholder="Tempo inteiro em horas" v-model="configuracao.tempoGanhoDeDesconto" required>
+        <input type="number" min="0" class="form-control" placeholder="Tempo inteiro em horas"
+          v-model="configuracao.tempoGanhoDeDesconto" required>
       </div>
       <div class="col-md-2 text-start form-element">
         <label class="form-label">Gerar desconto</label>
-        <select class="form-select" v-model="configuracao.gerarDesconto" aria-label="Default select example">
+        <select class="form-select" v-model="configuracao.gerarDesconto">
           <option value="1" selected>Sim</option>
           <option value="2">Não</option>
         </select>

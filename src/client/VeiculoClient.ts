@@ -15,7 +15,7 @@ export class VeiculoClient {
 
   public async findById(id: number): Promise<VeiculoModel> {
     try {
-      return (await this.axiosClient.get<VeiculoModel>(`?id=${id}`)).data;
+      return (await this.axiosClient.get<VeiculoModel>(`/${id}`)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }
@@ -51,17 +51,17 @@ export class VeiculoClient {
     }
   }
 
-  public async cadastrar(veiculo: VeiculoModel): Promise<void> {
+  public async cadastrar(condutor: VeiculoModel): Promise<string> {
     try {
-      return (await this.axiosClient.post(``, veiculo)).data;
+      return (await this.axiosClient.post<string>(``, condutor)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }
   }
 
-  public async atualizar(veiculo: VeiculoModel): Promise<void> {
+  public async editar(id: number, marca: VeiculoModel): Promise<string> {
     try {
-      return (await this.axiosClient.put(`/${veiculo.id}`, veiculo)).data;
+      return (await this.axiosClient.put<string>(`/${id}`, marca)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }

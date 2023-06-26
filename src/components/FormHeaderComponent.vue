@@ -5,7 +5,7 @@
         </div>
         <div class="col-md-2">
             <div class="d-grid gap-2" id="header-element-right">
-                <button type="submit" class="btn btn-success">Salvar</button>
+                <button type="submit" class="btn btn-success" @click="onClickCadastrar">Salvar</button>
             </div>
         </div>
         <div class="col-md-2">
@@ -34,10 +34,14 @@ export default defineComponent({
         },
     },
     methods: {
-    voltarPath() {
-      this.$router.go(-1);
-    },
-  }
+        voltarPath() {
+            this.$router.go(-1);
+        },
+        onClickCadastrar() {
+            // Emitir um evento personalizado chamado 'cadastrar'
+            this.$emit('cadastrar');
+        },
+    }
 });
 </script>
 
@@ -47,6 +51,6 @@ export default defineComponent({
     justify-content: center;
     margin: auto;
     width: 80%;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 </style>

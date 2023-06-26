@@ -13,7 +13,7 @@ export class MovimentacaoClient {
 
   public async findById(id: number): Promise<MovimentacaoModel> {
     try {
-      return (await this.axiosClient.get<MovimentacaoModel>(`?id=${id}`)).data;
+      return (await this.axiosClient.get<MovimentacaoModel>(`/${id}`)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }
@@ -27,18 +27,17 @@ export class MovimentacaoClient {
     }
   }
 
-  public async cadastrar(movimentacao: MovimentacaoModel): Promise<void> {
+  public async cadastrar(condutor: MovimentacaoModel): Promise<string> {
     try {
-      return (await this.axiosClient.post(``, movimentacao)).data;
+      return (await this.axiosClient.post<string>(``, condutor)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }
   }
 
-  public async atualizar(movimentacao: MovimentacaoModel): Promise<void> {
+  public async editar(id: number, marca: MovimentacaoModel): Promise<string> {
     try {
-      return (await this.axiosClient.put(`/${movimentacao.id}`, movimentacao))
-        .data;
+      return (await this.axiosClient.put<string>(`/${id}`, marca)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }

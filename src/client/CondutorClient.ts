@@ -10,9 +10,10 @@ export class CondutorClient {
       headers: { "Content-type": "application/json" },
     });
   }
+
   public async findById(id: number): Promise<CondutorModel> {
     try {
-      return (await this.axiosClient.get<CondutorModel>(`?id=${id}`)).data;
+      return (await this.axiosClient.get<CondutorModel>(`/${id}`)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }
@@ -26,17 +27,17 @@ export class CondutorClient {
     }
   }
 
-  public async cadastrar(condutor: CondutorModel): Promise<void> {
+  public async cadastrar(condutor: CondutorModel): Promise<string> {
     try {
-      return (await this.axiosClient.post(``, condutor)).data;
+      return (await this.axiosClient.post<string>(``, condutor)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }
   }
 
-  public async atualizar(condutor: CondutorModel): Promise<void> {
+  public async editar(id: number, marca: CondutorModel): Promise<string> {
     try {
-      return (await this.axiosClient.put(`/${condutor.id}`, condutor)).data;
+      return (await this.axiosClient.put<string>(`/${id}`, marca)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }

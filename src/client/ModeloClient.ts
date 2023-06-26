@@ -13,7 +13,7 @@ export class ModeloClient {
 
   public async findById(id: number): Promise<ModeloModel> {
     try {
-      return (await this.axiosClient.get<ModeloModel>(`?id=${id}`)).data;
+      return (await this.axiosClient.get<ModeloModel>(`/${id}`)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }
@@ -27,17 +27,17 @@ export class ModeloClient {
     }
   }
 
-  public async cadastrar(modelo: ModeloModel): Promise<void> {
+  public async cadastrar(condutor: ModeloModel): Promise<string> {
     try {
-      return (await this.axiosClient.post(``, modelo)).data;
+      return (await this.axiosClient.post<string>(``, condutor)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }
   }
 
-  public async atualizar(modelo: ModeloModel): Promise<void> {
+  public async editar(id: number, marca: ModeloModel): Promise<string> {
     try {
-      return (await this.axiosClient.put(`/${modelo.id}`, modelo)).data;
+      return (await this.axiosClient.put<string>(`/${id}`, marca)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }

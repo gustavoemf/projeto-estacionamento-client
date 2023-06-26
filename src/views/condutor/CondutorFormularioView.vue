@@ -1,5 +1,13 @@
 <template>
   <HeaderComponent />
+  <div v-if="alert.confirm" class="row">
+    <div class="col-md-12 text-start">
+      <div :class="alert.style" role="alert">
+        <strong>{{ alert.message }}</strong> {{ alert.response }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    </div>
+  </div>
   <FormHeaderComponent />
   <div class="container">
     <hr />
@@ -40,7 +48,13 @@ export default defineComponent({
   },
   data() {
     return {
-      condutor: new CondutorModel()
+      condutor: new CondutorModel(),
+      alert: {
+        confirm: false as boolean,
+        response: "" as string,
+        message: "" as string,
+        style: "" as string
+      }
     };
   },
   computed: {
@@ -56,10 +70,19 @@ export default defineComponent({
       CondutorClient.cadastrar(this.condutor)
         .then((sucess) => {
           this.condutor = new CondutorModel();
-          console.log(sucess);
+
+          this.alert.confirm = true;
+          this.alert.response = sucess;
+          this.alert.message = "Cadastro realizado com sucesso!";
+          this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
         })
         .catch((error) => {
           console.log(error.data);
+
+          this.alert.confirm = true;
+          this.alert.response = error;
+          this.alert.message = "[ERRO] Não foi possível realizar o cadastro!";
+          this.alert.style = "alert alert-danger d-flex align-items-center alert-dismissible fade show";
         });
     },
   }

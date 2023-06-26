@@ -1,6 +1,14 @@
 <template>
     <HeaderComponent />
-    <FormHeaderComponent />
+    <div v-if="alert.confirm" class="row" style="width: 50%; margin: auto; margin-top: 10px;">
+        <div class="col-md-12 text-start">
+            <div :class="alert.style" role="alert">
+                <strong>{{ alert.response }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+    </div>
+    <FormHeaderComponent @cadastrar="handleCadastrar" />
     <div class="container">
         <hr />
         <div class="row">
@@ -27,31 +35,61 @@ export default defineComponent({
     },
     data() {
         return {
-            marca: new MarcaModel()
+            marca: new MarcaModel(),
+            alert: {
+                confirm: false as boolean,
+                response: "" as string,
+                message: "" as string,
+                style: "" as string
+            }
         };
     },
-    computed: {
-        id() {
-            return this.$route.query.id;
-        },
-        form() {
-            return this.$route.query.form;
+    methods: {
+        handleCadastrar() {
+            if (this.marca.id) {
+                // Marca já existe, realizar ação de edição
+                MarcaClient.editar(this.marca.id, this.marca)
+                    .then(() => {
+                        // Redirecionar para a página de lista após a edição
+                        this.$router.push({ name: 'marca-lista-view' });
+                    })
+                    .catch((error) => {
+                        console.log(error.data);
+                    });
+            } else {
+                // Marca não existe, realizar ação de criação
+                MarcaClient.cadastrar(this.marca)
+                    .then((sucess) => {
+                        this.marca = new MarcaModel();
+
+                        this.alert.confirm = true;
+                        this.alert.response = sucess;
+                        this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
+                    })
+                    .catch((error) => {
+                        console.log(error.data);
+
+                        this.alert.confirm = false;
+                        this.alert.response = error;
+                        this.alert.style = "alert alert-danger d-flex align-items-center alert-dismissible fade show";
+                    });
+            }
         }
     },
-    methods: {
-        onClickCadastrar() {
-            MarcaClient.cadastrar(this.marca)
-                .then((sucess) => {
-                    this.marca = new MarcaModel();
-                    console.log(sucess);
-                })
-                .catch((error) => {
-                    console.log(error.data);
-                });
-        },
-    }
-});
+    created() {
+        // Obter o ID da marca da rota
+        const id = Number(this.$route.params.id);
 
+        // Recuperar os dados da marca usando o ID
+        MarcaClient.findById(id)
+            .then((marca) => {
+                this.marca = marca;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    },
+});
 </script>
 
 <style scoped lang="scss">

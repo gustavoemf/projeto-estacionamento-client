@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-6 text-start">
                 <label class="form-label">Marca *</label>
-                <select class="form-select" aria-label="Default select example" v-model="modelo.marca">
+                <select class="form-select" v-model="modelo.marca" required>
                     <option :value="item" v-for="item in marcaList" :key="item.id">
                         {{ item.nome }}
                     </option>

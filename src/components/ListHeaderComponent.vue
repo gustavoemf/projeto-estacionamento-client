@@ -43,6 +43,6 @@ export default defineComponent({
     justify-content: center;
     margin: auto;
     width: 80%;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 </style>

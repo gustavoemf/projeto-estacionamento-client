@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label"> Condutor *</label>
-        <select class="form-select" v-model="movimentacao.veiculo" aria-label="Default select example">
+        <select class="form-select" v-model="movimentacao.veiculo" required>
           <option :value="item" v-for="item in veiculoList" :key="item.id">
             {{ item.placa }}
           </option>
@@ -16,7 +16,7 @@
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label"> Veículo *</label>
-        <select class="form-select" v-model="movimentacao.condutor" aria-label="Default select example">
+        <select class="form-select" v-model="movimentacao.condutor" required>
           <option :value="item" v-for="item in condutorList" :key="item.id">
             {{ item.nome }}
           </option>
@@ -32,7 +32,7 @@
     <div class="row">
       <div class="col-md-6 text-start">
         <label class="form-label">Saída</label>
-        <input type="datetime-local" class="form-control" v-model="movimentacao.saida" required>
+        <input type="datetime-local" class="form-control" v-model="movimentacao.saida">
       </div>
     </div>
   </div>
@@ -106,7 +106,8 @@ export default defineComponent({
   margin-top: 10px;
 }
 
-.form-control, .form-select {
+.form-control,
+.form-select {
   outline: none;
   box-shadow: none;
   border-color: #ced4da;

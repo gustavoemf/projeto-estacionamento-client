@@ -1,5 +1,13 @@
 <template>
     <HeaderComponent />
+    <div v-if="alert.confirm" class="row" style="width: 50%; margin: 10px auto;">
+        <div class="col-md-12 text-start">
+            <div :class="alert.style" role="alert">
+                <strong>{{ alert.response }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+    </div>
     <ListHeaderComponent />
     <div class="container">
         <hr />
@@ -23,11 +31,10 @@
                             </th>
                             <th class="text-start">{{ item.nome }}</th>
                             <th class="col-md-2">
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <router-link type="button" class="btn btn-sm btn-warning"
-                                        :to="{ name: 'marca-formulario-editar-view', query: { id: item.id, form: 'editar' } }">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-sm btn-warning" @click="onClickEditar(item.id)">
                                         Editar
-                                    </router-link>
+                                    </button>
                                     <button type="button" class="btn btn-sm btn-danger" @click="onClickExcluir(item.id)">
                                         Excluir
                                     </button>
@@ -47,6 +54,7 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 import { MarcaModel } from '@/model/MarcaModel'
 import ListHeaderComponent from '@/components/ListHeaderComponent.vue';
 import MarcaClient from '@/client/MarcaClient';
+import { useRouter } from "vue-router";
 
 export default defineComponent({
     name: 'MarcaLista',
@@ -57,7 +65,13 @@ export default defineComponent({
     data() {
         return {
             marca: new MarcaModel,
-            marcasList: new Array<MarcaModel>()
+            marcasList: new Array<MarcaModel>(),
+            alert: {
+                confirm: false as boolean,
+                response: "" as string,
+                message: "" as string,
+                style: "" as string
+            }
         }
     },
     mounted() {
@@ -73,17 +87,25 @@ export default defineComponent({
                     console.log(error);
                 });
         },
-        onClickExcluir(id: number) {
-            MarcaClient.excluir(id)
-                .then((sucess) => {
-                    this.marca = new MarcaModel();
-                    console.log(sucess);
-                    this.findAll();
-                })
-                .catch((error) => {
-                    console.log(error.data);
-                });
+        onClickEditar(id: number) {
+            // Redirecionar para a página de edição com o ID da marca no parâmetro de rota
+            this.$router.push({ name: 'marca-formulario-editar-view', params: { id } });
         },
+        onClickExcluir(id: number) {
+            if (confirm('Tem certeza de que deseja excluir esta marca?')) {
+                MarcaClient.excluir(id)
+                    .then((sucess) => {
+                        // Atualizar a lista de marcas após a exclusão
+                        this.findAll();
+                        this.alert.confirm = true;
+                        this.alert.response = sucess;
+                        this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
+        }
     },
 
 });
