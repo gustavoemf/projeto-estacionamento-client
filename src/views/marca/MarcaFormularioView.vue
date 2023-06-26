@@ -47,7 +47,7 @@ export default defineComponent({
     methods: {
         handleCadastrar() {
             if (this.marca.id) {
-                MarcaClient.editar(Number(this.marca.id), this.marca)
+                MarcaClient.editar(this.marca.id, this.marca)
                     .then(() => {
                         this.$router.push({ name: 'marca-lista-view' });
                     })

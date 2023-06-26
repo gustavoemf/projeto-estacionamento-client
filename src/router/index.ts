@@ -38,8 +38,8 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/movimentacao/formulario/:id",
         name: "movimentacao-formulario-editar-view",
-        component: MovimentacaoFormularioView,
-      }
+        component: MovimentacaoFormularioView
+      },
     ],
   },
   {
@@ -55,8 +55,8 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/veiculo/formulario/:id",
         name: "veiculo-formulario-editar-view",
-        component: CondutorFormularioView,
-      }
+        component: CondutorFormularioView
+      },
     ],
   },
   {
@@ -72,8 +72,8 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/veiculo/formulario/:id",
         name: "veiculo-formulario-editar-view",
-        component: VeiculoFormularioView,
-      }
+        component: VeiculoFormularioView
+      },
     ],
   },
   {
@@ -89,8 +89,8 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/modelo/formulario/:id",
         name: "modelo-formulario-editar-view",
-        component: ModeloFormularioView,
-      }
+        component: ModeloFormularioView
+      },
     ],
   },
   {
@@ -106,14 +106,21 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/marca/formulario/:id",
         name: "marca-formulario-editar-view",
-        component: MarcaFormularioView,
-      }
+        component: MarcaFormularioView
+      },
     ],
   },
   {
     path: "/configuracoes",
     name: "configuracoes",
     component: ConfiguracaoView,
+    children: [
+      {
+        path: "/configuracoes/:id",
+        name: "configuracoes-editar-view",
+        component: ConfiguracaoView
+      },
+    ],
   },
 ];
 
