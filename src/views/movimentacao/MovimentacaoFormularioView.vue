@@ -56,28 +56,16 @@ export default defineComponent({
     return {
       movimentacao: new MovimentacaoModel(),
       condutorList: [] as CondutorModel[],
-      veiculoList: [] as VeiculoModel[]
+      veiculoList: [] as VeiculoModel[],
+      alert: {
+        confirm: false as boolean,
+        response: "" as string,
+        message: "" as string,
+        style: "" as string
+      }
     };
   },
-  computed: {
-    id() {
-      return this.$route.query.id;
-    },
-    form() {
-      return this.$route.query.form;
-    }
-  },
   methods: {
-    onClickCadastrar() {
-      MovimentacaoClient.cadastrar(this.movimentacao)
-        .then((sucess) => {
-          this.movimentacao = new MovimentacaoModel();
-          console.log(sucess);
-        })
-        .catch((error) => {
-          console.log(error.data);
-        });
-    },
     selectCondutorList() {
       CondutorClient.findAll()
         .then((response) => {
@@ -95,7 +83,44 @@ export default defineComponent({
         .catch((error) => {
           console.log(error);
         });
-    },
+    }, handleCadastrar() {
+      if (this.movimentacao.id) {
+        MovimentacaoClient.editar(this.movimentacao.id, this.movimentacao)
+          .then(() => {
+            this.$router.push({ name: 'movimentacao-lista-view' });
+          })
+          .catch((error) => {
+            console.log(error.data);
+          });
+      } else {
+        MovimentacaoClient.cadastrar(this.movimentacao)
+          .then((sucess) => {
+            this.movimentacao = new MovimentacaoModel();
+
+            this.alert.confirm = true;
+            this.alert.response = sucess;
+            this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
+          })
+          .catch((error) => {
+            console.log(error.data);
+
+            this.alert.confirm = false;
+            this.alert.response = error;
+            this.alert.style = "alert alert-danger d-flex align-items-center alert-dismissible fade show";
+          });
+      }
+    }
+  },
+  created() {
+    const id = Number(this.$route.params.id);
+
+    MovimentacaoClient.findById(id)
+      .then((movimentacao) => {
+        this.movimentacao = movimentacao;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 });
 

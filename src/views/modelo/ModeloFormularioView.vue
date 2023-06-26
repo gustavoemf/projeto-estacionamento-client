@@ -40,28 +40,16 @@ export default defineComponent({
     data() {
         return {
             modelo: new ModeloModel(),
-            marcaList: [] as MarcaModel[]
+            marcaList: [] as MarcaModel[],
+            alert: {
+                confirm: false as boolean,
+                response: "" as string,
+                message: "" as string,
+                style: "" as string
+            }
         };
     },
-    computed: {
-        id() {
-            return this.$route.query.id;
-        },
-        form() {
-            return this.$route.query.form;
-        }
-    },
     methods: {
-        onClickCadastrar() {
-            ModeloClient.cadastrar(this.modelo)
-                .then((sucess) => {
-                    this.modelo = new ModeloModel();
-                    console.log(sucess);
-                })
-                .catch((error) => {
-                    console.log(error.data);
-                });
-        },
         selectMarcaList() {
             MarcaClient.findAll()
                 .then((response) => {
@@ -70,7 +58,44 @@ export default defineComponent({
                 .catch((error) => {
                     console.log(error);
                 });
+        }, handleCadastrar() {
+            if (this.modelo.id) {
+                MarcaClient.editar(this.modelo.id, this.modelo)
+                    .then(() => {
+                        this.$router.push({ name: 'modelo-lista-view' });
+                    })
+                    .catch((error) => {
+                        console.log(error.data);
+                    });
+            } else {
+                ModeloClient.cadastrar(this.modelo)
+                    .then((sucess) => {
+                        this.modelo = new ModeloModel();
+
+                        this.alert.confirm = true;
+                        this.alert.response = sucess;
+                        this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
+                    })
+                    .catch((error) => {
+                        console.log(error.data);
+
+                        this.alert.confirm = false;
+                        this.alert.response = error;
+                        this.alert.style = "alert alert-danger d-flex align-items-center alert-dismissible fade show";
+                    });
+            }
         },
+        created() {
+            const id = Number(this.$route.params.id);
+
+            ModeloClient.findById(id)
+                .then((modelo) => {
+                    this.modelo = modelo;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     }
 });
 

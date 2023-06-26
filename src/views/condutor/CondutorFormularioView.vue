@@ -57,34 +57,45 @@ export default defineComponent({
       }
     };
   },
-  computed: {
-    id() {
-      return this.$route.query.id;
-    },
-    form() {
-      return this.$route.query.form;
+  methods: {
+    handleCadastrar() {
+      if (this.condutor.id) {
+        CondutorClient.editar(this.condutor.id, this.condutor)
+          .then(() => {
+            this.$router.push({ name: 'condutor-lista-view' });
+          })
+          .catch((error) => {
+            console.log(error.data);
+          });
+      } else {
+        CondutorClient.cadastrar(this.condutor)
+          .then((sucess) => {
+            this.condutor = new CondutorModel();
+
+            this.alert.confirm = true;
+            this.alert.response = sucess;
+            this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
+          })
+          .catch((error) => {
+            console.log(error.data);
+
+            this.alert.confirm = false;
+            this.alert.response = error;
+            this.alert.style = "alert alert-danger d-flex align-items-center alert-dismissible fade show";
+          });
+      }
     }
   },
-  methods: {
-    onClickCadastrar() {
-      CondutorClient.cadastrar(this.condutor)
-        .then((sucess) => {
-          this.condutor = new CondutorModel();
+  created() {
+    const id = Number(this.$route.params.id);
 
-          this.alert.confirm = true;
-          this.alert.response = sucess;
-          this.alert.message = "Cadastro realizado com sucesso!";
-          this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
-        })
-        .catch((error) => {
-          console.log(error.data);
-
-          this.alert.confirm = true;
-          this.alert.response = error;
-          this.alert.message = "[ERRO] Não foi possível realizar o cadastro!";
-          this.alert.style = "alert alert-danger d-flex align-items-center alert-dismissible fade show";
-        });
-    },
+    CondutorClient.findById(id)
+      .then((condutor) => {
+        this.condutor = condutor;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 });
 

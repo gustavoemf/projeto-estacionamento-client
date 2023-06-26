@@ -59,7 +59,13 @@ export default defineComponent({
     data() {
         return {
             modelo: new ModeloModel,
-            modelosList: new Array<ModeloModel>()
+            modelosList: new Array<ModeloModel>(),
+            alert: {
+                confirm: false as boolean,
+                response: "" as string,
+                message: "" as string,
+                style: "" as string
+            }
         }
     },
     methods: {
@@ -72,16 +78,27 @@ export default defineComponent({
                     console.log(error);
                 });
         },
+        onClickEditar(id: number) {
+            this.$router.push({ name: 'modelo-formulario-editar-view', params: { id } });
+        },
         onClickExcluir(id: number) {
-            ModeloClient.excluir(id)
-                .then((sucess) => {
-                    this.modelo = new ModeloModel();
-                    console.log(sucess);
-                    this.findAll();
-                })
-                .catch((error) => {
-                    console.log(error.data);
-                });
+            if (confirm('Tem certeza de que deseja excluir este modelo?')) {
+                ModeloClient.excluir(id)
+                    .then((sucess) => {
+                        this.findAll();
+
+                        this.alert.confirm = true;
+                        this.alert.response = sucess;
+                        this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
+                    })
+                    .catch((error) => {
+                        console.log(error);
+
+                        this.alert.confirm = false;
+                        this.alert.response = error;
+                        this.alert.style = "alert alert-danger d-flex align-items-center alert-dismissible fade show";
+                    });
+            }
         }
     }
 });

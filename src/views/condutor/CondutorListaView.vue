@@ -67,8 +67,17 @@ export default defineComponent({
     data() {
         return {
             condutor: new CondutorModel(),
-            condutoresLista: new Array<CondutorModel>()
+            condutoresLista: new Array<CondutorModel>(),
+            alert: {
+                confirm: false as boolean,
+                response: "" as string,
+                message: "" as string,
+                style: "" as string
+            }
         }
+    },
+    mounted() {
+        this.findAll();
     },
     methods: {
         findAll() {
@@ -80,17 +89,28 @@ export default defineComponent({
                     console.log(error);
                 });
         },
-        onClickExcluir(id: number) {
-            CondutorClient.excluir(id)
-                .then((sucess) => {
-                    this.condutor = new CondutorModel();
-                    console.log(sucess);
-                    this.findAll();
-                })
-                .catch((error) => {
-                    console.log(error.data);
-                });
+        onClickEditar(id: number) {
+            this.$router.push({ name: 'condutor-formulario-editar-view', params: { id } });
         },
+        onClickExcluir(id: number) {
+            if (confirm('Tem certeza de que deseja excluir este condutor?')) {
+                CondutorClient.excluir(id)
+                    .then((sucess) => {
+                        this.findAll();
+
+                        this.alert.confirm = true;
+                        this.alert.response = sucess;
+                        this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
+                    })
+                    .catch((error) => {
+                        console.log(error);
+
+                        this.alert.confirm = false;
+                        this.alert.response = error;
+                        this.alert.style = "alert alert-danger d-flex align-items-center alert-dismissible fade show";
+                    });
+            }
+        }
     }
 });
 </script>

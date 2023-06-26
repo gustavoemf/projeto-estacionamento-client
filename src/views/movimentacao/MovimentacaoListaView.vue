@@ -67,8 +67,17 @@ export default defineComponent({
     data() {
         return {
             movimentacao: new MovimentacaoModel,
-            movimentacoesLista: new Array<MovimentacaoModel>()
+            movimentacoesLista: new Array<MovimentacaoModel>(),
+            alert: {
+                confirm: false as boolean,
+                response: "" as string,
+                message: "" as string,
+                style: "" as string
+            }
         }
+    },
+    mounted() {
+        this.findAll();
     },
     methods: {
         findAll() {
@@ -80,16 +89,27 @@ export default defineComponent({
                     console.log(error);
                 });
         },
+        onClickEditar(id: number) {
+            this.$router.push({ name: 'movimentacao-formulario-editar-view', params: { id } });
+        },
         onClickExcluir(id: number) {
-            MovimentacaoClient.excluir(id)
-                .then((sucess) => {
-                    this.movimentacao = new MovimentacaoModel();
-                    console.log(sucess);
-                    this.findAll();
-                })
-                .catch((error) => {
-                    console.log(error.data);
-                });
+            if (confirm('Tem certeza de que deseja excluir esta movimentação?')) {
+                MovimentacaoClient.excluir(id)
+                    .then((sucess) => {
+                        this.findAll();
+
+                        this.alert.confirm = true;
+                        this.alert.response = sucess;
+                        this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
+                    })
+                    .catch((error) => {
+                        console.log(error);
+
+                        this.alert.confirm = false;
+                        this.alert.response = error;
+                        this.alert.style = "alert alert-danger d-flex align-items-center alert-dismissible fade show";
+                    });
+            }
         }
     }
 });

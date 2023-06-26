@@ -71,7 +71,13 @@ export default defineComponent({
       veiculo: new VeiculoModel(),
       modeloList: [] as ModeloModel[],
       corList: [] as CorModel[],
-      tipoList: [] as TipoModel[]
+      tipoList: [] as TipoModel[],
+      alert: {
+        confirm: false as boolean,
+        response: "" as string,
+        message: "" as string,
+        style: "" as string
+      }
     };
   },
   mounted() {
@@ -87,16 +93,6 @@ export default defineComponent({
     }
   },
   methods: {
-    onClickCadastrar() {
-      VeiculoClient.cadastrar(this.veiculo)
-        .then((sucess) => {
-          this.veiculo = new VeiculoModel();
-          console.log(sucess);
-        })
-        .catch((error) => {
-          console.log(error.data);
-        });
-    },
     selectModeloList() {
       ModeloClient.findAll()
         .then((response) => {
@@ -124,6 +120,44 @@ export default defineComponent({
           console.log(error);
         });
     },
+    handleCadastrar() {
+      if (this.veiculo.id) {
+        VeiculoClient.editar(this.veiculo.id, this.veiculo)
+          .then(() => {
+            this.$router.push({ name: 'veiculo-lista-view' });
+          })
+          .catch((error) => {
+            console.log(error.data);
+          });
+      } else {
+        VeiculoClient.cadastrar(this.veiculo)
+          .then((sucess) => {
+            this.veiculo = new VeiculoModel();
+
+            this.alert.confirm = true;
+            this.alert.response = sucess;
+            this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
+          })
+          .catch((error) => {
+            console.log(error.data);
+
+            this.alert.confirm = false;
+            this.alert.response = error;
+            this.alert.style = "alert alert-danger d-flex align-items-center alert-dismissible fade show";
+          });
+      }
+    }
+  },
+  created() {
+    const id = Number(this.$route.params.id);
+
+    VeiculoClient.findById(id)
+      .then((veiculo) => {
+        this.veiculo = veiculo;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 });
 

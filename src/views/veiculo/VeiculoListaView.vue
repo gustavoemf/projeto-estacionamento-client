@@ -65,8 +65,17 @@ export default defineComponent({
     data() {
         return {
             veiculo: new VeiculoModel,
-            veiculosLista: new Array<VeiculoModel>()
+            veiculosLista: new Array<VeiculoModel>(),
+            alert: {
+                confirm: false as boolean,
+                response: "" as string,
+                message: "" as string,
+                style: "" as string
+            }
         }
+    },
+    mounted() {
+        this.findAll();
     },
     methods: {
         findAll() {
@@ -78,16 +87,27 @@ export default defineComponent({
                     console.log(error);
                 });
         },
+        onClickEditar(id: number) {
+            this.$router.push({ name: 'veiculo-formulario-editar-view', params: { id } });
+        },
         onClickExcluir(id: number) {
-            VeiculoClient.excluir(id)
-                .then((sucess) => {
-                    this.veiculo = new VeiculoModel();
-                    console.log(sucess);
-                    this.findAll();
-                })
-                .catch((error) => {
-                    console.log(error.data);
-                });
+            if (confirm('Tem certeza de que deseja excluir esta veículo?')) {
+                VeiculoClient.excluir(id)
+                    .then((sucess) => {
+                        this.findAll();
+
+                        this.alert.confirm = true;
+                        this.alert.response = sucess;
+                        this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
+                    })
+                    .catch((error) => {
+                        console.log(error);
+
+                        this.alert.confirm = false;
+                        this.alert.response = error;
+                        this.alert.style = "alert alert-danger d-flex align-items-center alert-dismissible fade show";
+                    });
+            }
         }
     }
 });
