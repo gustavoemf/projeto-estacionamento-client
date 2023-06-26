@@ -1,6 +1,6 @@
 <template>
     <HeaderComponent />
-    <div v-if="alert.confirm" class="row" style="width: 50%; margin: auto; margin-top: 10px;">
+    <div v-if="alert.confirm" class="row response-message">
         <div class="col-md-12 text-start">
             <div :class="alert.style" role="alert">
                 <strong>{{ alert.response }}</strong>
@@ -8,13 +8,13 @@
             </div>
         </div>
     </div>
-    <FormHeaderComponent @cadastrar="handleCadastrar" />
+    <FormHeaderComponent @cadastrar="handleCadastrar"/>
     <div class="container">
         <hr />
-        <div class="row">
+        <div class="row margin-10">
             <div class="col-md-6 text-start">
                 <label class="form-label">Nome da Marca *</label>
-                <input type="text" class="form-control" v-model="marca.nome" required>
+                <input type="text" class="form-control remover-borda" v-model="marca.nome" required>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@ export default defineComponent({
     methods: {
         handleCadastrar() {
             if (this.marca.id) {
-                MarcaClient.editar(this.marca.id, this.marca)
+                MarcaClient.editar(Number(this.marca.id), this.marca)
                     .then(() => {
                         this.$router.push({ name: 'marca-lista-view' });
                     })
@@ -76,25 +76,15 @@ export default defineComponent({
     created() {
         const id = Number(this.$route.params.id);
 
-        MarcaClient.findById(id)
-            .then((marca) => {
-                this.marca = marca;
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        if (!isNaN(id)) {
+            MarcaClient.findById(id)
+                .then((marca) => {
+                    this.marca = marca;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     }
 });
 </script>
-
-<style scoped lang="scss">
-.row {
-    margin-top: 10px;
-}
-
-.form-control {
-    outline: none;
-    box-shadow: none;
-    border-color: #ced4da;
-}
-</style>

@@ -1,18 +1,26 @@
 <template>
     <HeaderComponent />
-    <FormHeaderComponent />
-    <div class="container">
-        <hr />
-        <div class="row">
-            <div class="col-md-6 text-start">
-                <label class="form-label">Nome do Modelo *</label>
-                <input type="text" class="form-control" v-model="modelo.nome" required>
+    <div v-if="alert.confirm" class="row response-message">
+        <div class="col-md-12 text-start">
+            <div :class="alert.style" role="alert">
+                <strong>{{ alert.response }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         </div>
-        <div class="row">
+    </div>
+    <FormHeaderComponent @cadastrar="handleCadastrar" />
+    <div class="container">
+        <hr />
+        <div class="row margin-10">
+            <div class="col-md-6 text-start">
+                <label class="form-label">Nome do Modelo *</label>
+                <input type="text" class="form-control remover-borda" v-model="modelo.nome" required>
+            </div>
+        </div>
+        <div class="row margin-10">
             <div class="col-md-6 text-start">
                 <label class="form-label">Marca *</label>
-                <select class="form-select" v-model="modelo.marca" required>
+                <select class="form-select remover-borda" v-model="modelo.marca" required>
                     <option :value="item" v-for="item in marcaList" :key="item.id">
                         {{ item.nome }}
                     </option>
@@ -49,6 +57,9 @@ export default defineComponent({
             }
         };
     },
+    mounted() {
+        this.selectMarcaList();
+    },
     methods: {
         selectMarcaList() {
             MarcaClient.findAll()
@@ -60,7 +71,7 @@ export default defineComponent({
                 });
         }, handleCadastrar() {
             if (this.modelo.id) {
-                MarcaClient.editar(this.modelo.id, this.modelo)
+                ModeloClient.editar(this.modelo.id, this.modelo)
                     .then(() => {
                         this.$router.push({ name: 'modelo-lista-view' });
                     })
@@ -85,9 +96,10 @@ export default defineComponent({
                     });
             }
         },
-        created() {
-            const id = Number(this.$route.params.id);
+    }, created() {
+        const id = Number(this.$route.params.id);
 
+        if (!isNaN(id)) {
             ModeloClient.findById(id)
                 .then((modelo) => {
                     this.modelo = modelo;
@@ -98,17 +110,4 @@ export default defineComponent({
         }
     }
 });
-
 </script>
-
-<style scoped lang="scss">
-.row {
-    margin-top: 10px;
-}
-
-.form-control {
-    outline: none;
-    box-shadow: none;
-    border-color: #ced4da;
-}
-</style>

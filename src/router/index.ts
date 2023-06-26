@@ -36,7 +36,7 @@ const routes: Array<RouteRecordRaw> = [
     component: MovimentacaoFormularioView,
     children: [
       {
-        path: "/movimentacao/formulario",
+        path: "/movimentacao/formulario/:id",
         name: "movimentacao-formulario-editar-view",
         component: MovimentacaoFormularioView,
       }
@@ -53,7 +53,7 @@ const routes: Array<RouteRecordRaw> = [
     component: CondutorFormularioView,
     children: [
       {
-        path: "/veiculo/formulario",
+        path: "/veiculo/formulario/:id",
         name: "veiculo-formulario-editar-view",
         component: CondutorFormularioView,
       }
@@ -70,7 +70,7 @@ const routes: Array<RouteRecordRaw> = [
     component: VeiculoFormularioView,
     children: [
       {
-        path: "/veiculo/formulario",
+        path: "/veiculo/formulario/:id",
         name: "veiculo-formulario-editar-view",
         component: VeiculoFormularioView,
       }
@@ -87,7 +87,7 @@ const routes: Array<RouteRecordRaw> = [
     component: ModeloFormularioView,
     children: [
       {
-        path: "/modelo/formulario",
+        path: "/modelo/formulario/:id",
         name: "modelo-formulario-editar-view",
         component: ModeloFormularioView,
       }

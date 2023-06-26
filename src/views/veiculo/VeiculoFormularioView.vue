@@ -1,49 +1,58 @@
 <template>
   <HeaderComponent />
-  <FormHeaderComponent />
-  <div class="container">
-    <hr />
-    <div class="row">
-      <div class="col-md-6 text-start">
-        <label class="form-label">Placa *</label>
-        <input type="text" class="form-control" placeholder="Insira a placa do veículo" v-model="veiculo.placa" required>
+  <div v-if="alert.confirm" class="row response-message">
+    <div class="col-md-12 text-start">
+      <div :class="alert.style" role="alert">
+        <strong>{{ alert.response }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
       </div>
     </div>
-    <div class="row">
+  </div>
+  <FormHeaderComponent @cadastrar="handleCadastrar" />
+  <div class="container">
+    <hr />
+    <div class="row margin-10">
+      <div class="col-md-6 text-start">
+        <label class="form-label">Placa *</label>
+        <input type="text" class="form-control remover-borda" placeholder="Insira a placa do veículo"
+          v-model="veiculo.placa" required>
+      </div>
+    </div>
+    <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label">Modelo *</label>
-        <select class="form-select" v-model="veiculo.modelo" required>
+        <select class="form-select remover-borda" v-model="veiculo.modelo" required>
           <option :value="item" v-for="item in modeloList" :key="item.id">
             {{ item.nome }}
           </option>
         </select>
       </div>
     </div>
-    <div class="row">
+    <div class="row margin-10">
       <div class="col-md-6 text-start">
-        <label class="form-label"> Cor *</label>
-        <select class="form-select" v-model="veiculo.cor" required>
+        <label class="form-label">Cor *</label>
+        <select class="form-select remover-borda" v-model="veiculo.cor" required>
           <option :value="item" v-for="item in corList" :key="item">
             {{ item }}
           </option>
         </select>
       </div>
     </div>
-    <div class="row">
+    <div class="row margin-10">
       <div class="col-md-6 text-start">
-        <label class="form-label"> Tipo *</label>
-        <select class="form-select" v-model="veiculo.tipo" required>
+        <label class="form-label">Tipo *</label>
+        <select class="form-select remover-borda" v-model="veiculo.tipo" required>
           <option :value="item" v-for="item in tipoList" :key="item">
             {{ item }}
           </option>
         </select>
       </div>
     </div>
-    <div class="row">
+    <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label">Ano *</label>
-        <input type="number" min="0" class="form-control" placeholder="Insira o ano do veículo" v-model="veiculo.ano"
-          required>
+        <input type="number" min="0" class="form-control remover-borda" placeholder="Insira o ano do veículo"
+          v-model="veiculo.ano" required>
       </div>
     </div>
   </div>
@@ -81,16 +90,9 @@ export default defineComponent({
     };
   },
   mounted() {
+    this.selectModeloList();
     this.selectCorList();
     this.selectTipoList();
-  },
-  computed: {
-    id() {
-      return this.$route.query.id;
-    },
-    form() {
-      return this.$route.query.form;
-    }
   },
   methods: {
     selectModeloList() {
@@ -151,36 +153,15 @@ export default defineComponent({
   created() {
     const id = Number(this.$route.params.id);
 
-    VeiculoClient.findById(id)
-      .then((veiculo) => {
-        this.veiculo = veiculo;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (!isNaN(id)) {
+      VeiculoClient.findById(id)
+        .then((veiculo) => {
+          this.veiculo = veiculo;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
 });
-
 </script>
-
-<style scoped lang="scss">
-.row {
-  margin-top: 10px;
-}
-
-.form-element {
-  margin-top: 10px;
-
-  select {
-    width: 115px;
-  }
-}
-
-.form-control,
-.form-select {
-  outline: none;
-  box-shadow: none;
-  border-color: #ced4da;
-  margin-bottom: 10px;
-}
-</style>

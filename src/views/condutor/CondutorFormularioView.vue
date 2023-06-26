@@ -1,33 +1,33 @@
 <template>
   <HeaderComponent />
-  <div v-if="alert.confirm" class="row">
+  <div v-if="alert.confirm" class="row response-message">
     <div class="col-md-12 text-start">
       <div :class="alert.style" role="alert">
-        <strong>{{ alert.message }}</strong> {{ alert.response }}
+        <strong>{{ alert.response }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
       </div>
     </div>
   </div>
-  <FormHeaderComponent />
+  <FormHeaderComponent @cadastrar="handleCadastrar" />
   <div class="container">
     <hr />
-    <div class="row">
+    <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label">Nome *</label>
-        <input type="text" class="form-control" v-model="condutor.nome" required>
+        <input type="text" class="form-control remover-borda" v-model="condutor.nome" required>
       </div>
     </div>
-    <div class="row">
+    <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label">CPF *</label>
-        <input type="text" class="form-control" v-model="condutor.cpf" required>
+        <input type="text" class="form-control remover-borda" v-model="condutor.cpf" required>
       </div>
     </div>
-    <div class="row">
+    <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label">Telefone *</label>
-        <input type="tel" class="form-control" pattern="[0-9]{2}\s?[0-9]{4,5}-?[0-9]{4}" v-model="condutor.telefone"
-          required>
+        <input type="tel" class="form-control remover-borda" pattern="[0-9]{2}\s?[0-9]{4,5}-?[0-9]{4}"
+          v-model="condutor.telefone" required>
       </div>
     </div>
   </div>
@@ -89,26 +89,15 @@ export default defineComponent({
   created() {
     const id = Number(this.$route.params.id);
 
-    CondutorClient.findById(id)
-      .then((condutor) => {
-        this.condutor = condutor;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (!isNaN(id)) {
+      CondutorClient.findById(id)
+        .then((condutor) => {
+          this.condutor = condutor;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
 });
-
 </script>
-
-<style scoped lang="scss">
-.row {
-  margin-top: 10px;
-}
-
-.form-control {
-  outline: none;
-  box-shadow: none;
-  border-color: #ced4da;
-}
-</style>

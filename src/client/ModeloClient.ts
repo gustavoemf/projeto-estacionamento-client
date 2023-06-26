@@ -27,17 +27,17 @@ export class ModeloClient {
     }
   }
 
-  public async cadastrar(condutor: ModeloModel): Promise<string> {
+  public async cadastrar(modelo: ModeloModel): Promise<string> {
     try {
-      return (await this.axiosClient.post<string>(``, condutor)).data;
+      return (await this.axiosClient.post<string>(``, modelo)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }
   }
 
-  public async editar(id: number, marca: ModeloModel): Promise<string> {
+  public async editar(id: number, modelo: ModeloModel): Promise<string> {
     try {
-      return (await this.axiosClient.put<string>(`/${id}`, marca)).data;
+      return (await this.axiosClient.put<string>(`/${id}`, modelo)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }

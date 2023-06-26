@@ -1,38 +1,46 @@
 <template>
   <HeaderComponent />
-  <FormHeaderComponent />
+  <div v-if="alert.confirm" class="row response-message">
+    <div class="col-md-12 text-start">
+      <div :class="alert.style" role="alert">
+        <strong>{{ alert.response }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    </div>
+  </div>
+  <FormHeaderComponent @cadastrar="handleCadastrar" />
   <div class="container">
     <hr />
-    <div class="row">
+    <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label"> Condutor *</label>
-        <select class="form-select" v-model="movimentacao.veiculo" required>
+        <select class="form-select remover-borda" v-model="movimentacao.veiculo" required>
           <option :value="item" v-for="item in veiculoList" :key="item.id">
             {{ item.placa }}
           </option>
         </select>
       </div>
     </div>
-    <div class="row">
+    <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label"> Veículo *</label>
-        <select class="form-select" v-model="movimentacao.condutor" required>
+        <select class="form-select remover-borda" v-model="movimentacao.condutor" required>
           <option :value="item" v-for="item in condutorList" :key="item.id">
             {{ item.nome }}
           </option>
         </select>
       </div>
     </div>
-    <div class="row">
+    <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label">Entrada *</label>
-        <input type="datetime-local" class="form-control" v-model="movimentacao.entrada" required>
+        <input type="datetime-local" class="form-control remover-borda" v-model="movimentacao.entrada" required>
       </div>
     </div>
-    <div class="row">
+    <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label">Saída</label>
-        <input type="datetime-local" class="form-control" v-model="movimentacao.saida">
+        <input type="datetime-local" class="form-control remover-borda" v-model="movimentacao.saida">
       </div>
     </div>
   </div>
@@ -65,6 +73,10 @@ export default defineComponent({
       }
     };
   },
+  mounted() {
+    this.selectCondutorList();
+    this.selectVeiculoList();
+  },
   methods: {
     selectCondutorList() {
       CondutorClient.findAll()
@@ -75,7 +87,7 @@ export default defineComponent({
           console.log(error);
         });
     },
-    selectTipoList() {
+    selectVeiculoList() {
       VeiculoClient.findAll()
         .then((response) => {
           this.veiculoList = response;
@@ -114,28 +126,15 @@ export default defineComponent({
   created() {
     const id = Number(this.$route.params.id);
 
-    MovimentacaoClient.findById(id)
-      .then((movimentacao) => {
-        this.movimentacao = movimentacao;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (!isNaN(id)) {
+      MovimentacaoClient.findById(id)
+        .then((movimentacao) => {
+          this.movimentacao = movimentacao;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
 });
-
 </script>
-
-<style scoped lang="scss">
-.row {
-  margin-top: 10px;
-}
-
-.form-control,
-.form-select {
-  outline: none;
-  box-shadow: none;
-  border-color: #ced4da;
-  margin-bottom: 10px;
-}
-</style>

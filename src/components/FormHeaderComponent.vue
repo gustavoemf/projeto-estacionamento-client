@@ -38,9 +38,8 @@ export default defineComponent({
             this.$router.go(-1);
         },
         onClickCadastrar() {
-            // Emitir um evento personalizado chamado 'cadastrar'
             this.$emit('cadastrar');
-        },
+        }
     }
 });
 </script>

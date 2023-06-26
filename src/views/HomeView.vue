@@ -10,6 +10,6 @@ export default defineComponent({
   name: 'HomeView',
   components: {
     HeaderComponent
-},
+  },
 });
 </script>

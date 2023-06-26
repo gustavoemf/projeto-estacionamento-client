@@ -33,10 +33,9 @@
                             <th class="text-end">{{ item.tempoDesconto }}</th>
                             <th class="col-md-2">
                                 <div class="btn-group" role="group">
-                                    <router-link type="button" class="btn btn-sm btn-warning"
-                                        :to="{ name: 'marca-formulario-editar-view', query: { id: item.id, form: 'editar' } }">
+                                    <button type="button" class="btn btn-sm btn-warning" @click="onClickEditar(item.id)">
                                         Editar
-                                    </router-link>
+                                    </button>
                                     <button type="button" class="btn btn-sm btn-danger" @click="onClickExcluir(item.id)">
                                         Excluir
                                     </button>

@@ -26,18 +26,17 @@
                                 <span v-if="item.ativo" class="badge text-bg-success"> Ativo </span>
                                 <span v-if="!item.ativo" class="badge text-bg-danger"> Inativo </span>
                             </th>
-                            <th class="text-start">{{ item.condutor }}</th>
-                            <th class="text-start">{{ item.veiculo }}</th>
+                            <th class="text-start">{{ item.condutor.nome }}</th>
+                            <th class="text-start">{{ item.veiculo.placa }}</th>
                             <th class="text-start">{{ item.entrada }}</th>
                             <th class="text-start">{{ item.saida }}</th>
                             <th class="text-start">{{ item.valorMulta }}</th>
                             <th class="text-start">{{ item.valorTotal }}</th>
                             <th class="col-md-2">
                                 <div class="btn-group" role="group">
-                                    <router-link type="button" class="btn btn-sm btn-warning"
-                                        :to="{ name: 'marca-formulario-editar-view', query: { id: item.id, form: 'editar' } }">
+                                    <button type="button" class="btn btn-sm btn-warning" @click="onClickEditar(item.id)">
                                         Editar
-                                    </router-link>
+                                    </button>
                                     <button type="button" class="btn btn-sm btn-danger" @click="onClickExcluir(item.id)">
                                         Excluir
                                     </button>

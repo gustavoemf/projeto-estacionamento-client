@@ -19,17 +19,17 @@ export class ConfiguracaoClient {
     }
   }
 
-  public async cadastrar(condutor: ConfiguracaoModel): Promise<string> {
+  public async cadastrar(configuracao: ConfiguracaoModel): Promise<string> {
     try {
-      return (await this.axiosClient.post<string>(``, condutor)).data;
+      return (await this.axiosClient.post<string>(``, configuracao)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }
   }
 
-  public async editar(id: number, marca: ConfiguracaoModel): Promise<string> {
+  public async editar(id: number, configuracao: ConfiguracaoModel): Promise<string> {
     try {
-      return (await this.axiosClient.put<string>(`/${id}`, marca)).data;
+      return (await this.axiosClient.put<string>(`/${id}`, configuracao)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }

@@ -16,20 +16,19 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        <tr v-for="item in modelosList" :key="item.id">
+                        <tr v-for="item in modeloList" :key="item.id">
                             <th class="col-md-1">{{ item.id }}</th>
                             <th class="col-md-2">
                                 <span v-if="item.ativo" class="badge text-bg-success"> Ativo </span>
                                 <span v-if="!item.ativo" class="badge text-bg-danger"> Inativo </span>
                             </th>
                             <th class="text-start">{{ item.nome }}</th>
-                            <th class="text-start">{{ item.marca }}</th>
+                            <th class="text-start">{{ item.marca.nome }}</th>
                             <th class="col-md-2">
                                 <div class="btn-group" role="group">
-                                    <router-link type="button" class="btn btn-sm btn-warning"
-                                        :to="{ name: 'marca-formulario-editar-view', query: { id: item.id, form: 'editar' } }">
+                                    <button type="button" class="btn btn-sm btn-warning" @click="onClickEditar(item.id)">
                                         Editar
-                                    </router-link>
+                                    </button>
                                     <button type="button" class="btn btn-sm btn-danger" @click="onClickExcluir(item.id)">
                                         Excluir
                                     </button>
@@ -59,7 +58,7 @@ export default defineComponent({
     data() {
         return {
             modelo: new ModeloModel,
-            modelosList: new Array<ModeloModel>(),
+            modeloList: new Array<ModeloModel>(),
             alert: {
                 confirm: false as boolean,
                 response: "" as string,
@@ -68,11 +67,14 @@ export default defineComponent({
             }
         }
     },
+    mounted() {
+        this.findAll();
+    },
     methods: {
         findAll() {
             ModeloClient.findAll()
                 .then(sucess => {
-                    this.modelosList = sucess
+                    this.modeloList = sucess
                 })
                 .catch(error => {
                     console.log(error);

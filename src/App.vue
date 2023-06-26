@@ -11,18 +11,25 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: black;
-}
 
-nav {
-  padding: 30px;
+  .remover-borda {
+    outline: none;
+    box-shadow: none;
+    border-color: #ced4da;
+  }
 
-  a {
-    font-weight: bold;
-    color: black;
+  .select-formulario {
+    width: 115px;
+  }
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  .margin-10 {
+    margin-top: 10px;
+  }
+
+  .response-message {
+    width: 50%;
+    margin: auto;
+    margin-top: 10px;
   }
 }
 </style>

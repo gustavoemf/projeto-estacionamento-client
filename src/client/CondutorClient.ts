@@ -35,9 +35,9 @@ export class CondutorClient {
     }
   }
 
-  public async editar(id: number, marca: CondutorModel): Promise<string> {
+  public async editar(id: number, condutor: CondutorModel): Promise<string> {
     try {
-      return (await this.axiosClient.put<string>(`/${id}`, marca)).data;
+      return (await this.axiosClient.put<string>(`/${id}`, condutor)).data;
     } catch (error: any) {
       return Promise.reject(error.response);
     }
