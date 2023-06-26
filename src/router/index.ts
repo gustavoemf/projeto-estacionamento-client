@@ -39,12 +39,7 @@ const routes: Array<RouteRecordRaw> = [
         path: "/movimentacao/formulario",
         name: "movimentacao-formulario-editar-view",
         component: MovimentacaoFormularioView,
-      },
-      {
-        path: "/movimentacao/formulario",
-        name: "movimentacao-formulario-excluir-view",
-        component: MovimentacaoFormularioView,
-      },
+      }
     ],
   },
   {
@@ -61,12 +56,7 @@ const routes: Array<RouteRecordRaw> = [
         path: "/veiculo/formulario",
         name: "veiculo-formulario-editar-view",
         component: CondutorFormularioView,
-      },
-      {
-        path: "/veiculo/formulario",
-        name: "veiculo-formulario-excluir-view",
-        component: CondutorFormularioView,
-      },
+      }
     ],
   },
   {
@@ -83,12 +73,7 @@ const routes: Array<RouteRecordRaw> = [
         path: "/veiculo/formulario",
         name: "veiculo-formulario-editar-view",
         component: VeiculoFormularioView,
-      },
-      {
-        path: "/veiculo/formulario",
-        name: "veiculo-formulario-excluir-view",
-        component: VeiculoFormularioView,
-      },
+      }
     ],
   },
   {
@@ -105,12 +90,7 @@ const routes: Array<RouteRecordRaw> = [
         path: "/modelo/formulario",
         name: "modelo-formulario-editar-view",
         component: ModeloFormularioView,
-      },
-      {
-        path: "/modelo/formulario",
-        name: "modelo-formulario-excluir-view",
-        component: ModeloFormularioView,
-      },
+      }
     ],
   },
   {
@@ -127,12 +107,7 @@ const routes: Array<RouteRecordRaw> = [
         path: "/marca/formulario/:id",
         name: "marca-formulario-editar-view",
         component: MarcaFormularioView,
-      },
-      {
-        path: "/marca/formulario",
-        name: "marca-formulario-excluir-view",
-        component: MarcaFormularioView,
-      },
+      }
     ],
   },
   {

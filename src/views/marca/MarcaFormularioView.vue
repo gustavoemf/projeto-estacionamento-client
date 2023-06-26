@@ -47,17 +47,14 @@ export default defineComponent({
     methods: {
         handleCadastrar() {
             if (this.marca.id) {
-                // Marca já existe, realizar ação de edição
                 MarcaClient.editar(this.marca.id, this.marca)
                     .then(() => {
-                        // Redirecionar para a página de lista após a edição
                         this.$router.push({ name: 'marca-lista-view' });
                     })
                     .catch((error) => {
                         console.log(error.data);
                     });
             } else {
-                // Marca não existe, realizar ação de criação
                 MarcaClient.cadastrar(this.marca)
                     .then((sucess) => {
                         this.marca = new MarcaModel();
@@ -77,10 +74,8 @@ export default defineComponent({
         }
     },
     created() {
-        // Obter o ID da marca da rota
         const id = Number(this.$route.params.id);
 
-        // Recuperar os dados da marca usando o ID
         MarcaClient.findById(id)
             .then((marca) => {
                 this.marca = marca;

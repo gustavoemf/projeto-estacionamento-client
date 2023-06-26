@@ -54,7 +54,6 @@ import HeaderComponent from '@/components/HeaderComponent.vue';
 import { MarcaModel } from '@/model/MarcaModel'
 import ListHeaderComponent from '@/components/ListHeaderComponent.vue';
 import MarcaClient from '@/client/MarcaClient';
-import { useRouter } from "vue-router";
 
 export default defineComponent({
     name: 'MarcaLista',
@@ -88,25 +87,27 @@ export default defineComponent({
                 });
         },
         onClickEditar(id: number) {
-            // Redirecionar para a página de edição com o ID da marca no parâmetro de rota
             this.$router.push({ name: 'marca-formulario-editar-view', params: { id } });
         },
         onClickExcluir(id: number) {
             if (confirm('Tem certeza de que deseja excluir esta marca?')) {
                 MarcaClient.excluir(id)
                     .then((sucess) => {
-                        // Atualizar a lista de marcas após a exclusão
                         this.findAll();
+
                         this.alert.confirm = true;
                         this.alert.response = sucess;
                         this.alert.style = "alert alert-success d-flex align-items-center alert-dismissible fade show";
                     })
                     .catch((error) => {
                         console.log(error);
+
+                        this.alert.confirm = false;
+                        this.alert.response = error;
+                        this.alert.style = "alert alert-danger d-flex align-items-center alert-dismissible fade show";
                     });
             }
         }
     },
-
 });
 </script>
