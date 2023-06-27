@@ -31,5 +31,16 @@
     margin: auto;
     margin-top: 10px;
   }
+
+  .corrige-checkbox-menor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+
+    input {
+      margin: auto;
+    }
+  }
 }
 </style>

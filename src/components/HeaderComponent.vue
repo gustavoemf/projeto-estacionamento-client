@@ -35,12 +35,15 @@
 </template>
 
 <script lang="ts">
+import ConfiguracaoClient from '@/client/ConfiguracaoClient';
+import { ConfiguracaoModel } from '@/model/ConfiguracaoModel';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
     name: "HeaderComponent",
     data() {
         return {
+            configuracao: new ConfiguracaoModel,
             alert: {
                 confirm: false as boolean,
                 response: "" as string,
@@ -49,10 +52,22 @@ export default defineComponent({
             }
         }
     },
+    mounted() {
+        this.findById();
+    },
     methods: {
+        findById() {
+            ConfiguracaoClient.findById(1)
+                .then(sucess => {
+                    this.configuracao = sucess
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
         onClickConfigurar() {
-            if () {
-                this.$router.push({ name: 'configuracao-editar-view', params: { id } });
+            if (this.configuracao.id == 1) {
+                this.$router.push({ name: 'configuracao-editar-view', params: { id: 1 } });
             } else {
                 this.$router.push({ name: 'configuracao-view' });
             }
