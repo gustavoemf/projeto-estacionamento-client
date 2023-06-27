@@ -24,7 +24,7 @@
                     </thead>
                     <tbody class="table-group-divider">
                         <tr v-for="item in marcasList" :key="item.id">
-                            <th class="col-md-1">{{ item.id }}</th>
+                            <th class="col-md-1 text-center">{{ item.id }}</th>
                             <th class="col-md-2">
                                 <span v-if="item.ativo" class="badge text-bg-success"> Ativo </span>
                                 <span v-if="!item.ativo" class="badge text-bg-danger"> Inativo </span>

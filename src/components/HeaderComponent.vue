@@ -66,8 +66,8 @@ export default defineComponent({
                 });
         },
         onClickConfigurar() {
-            if (this.configuracao.id == 1) {
-                this.$router.push({ name: 'configuracao-editar-view', params: { id: 1 } });
+            if (this.configuracao.id) {
+                this.$router.push({ name: 'configuracao-editar-view', params: { id: this.configuracao.id } });
             } else {
                 this.$router.push({ name: 'configuracao-view' });
             }

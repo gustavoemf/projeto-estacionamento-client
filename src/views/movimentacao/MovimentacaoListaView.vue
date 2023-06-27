@@ -21,17 +21,17 @@
                     </thead>
                     <tbody class="table-group-divider">
                         <tr v-for="item in movimentacoesLista" :key="item.id">
-                            <th class="col-md-1">{{ item.id }}</th>
+                            <th class="col-md-1 text-center">{{ item.id }}</th>
                             <th class="col-md-2">
                                 <span v-if="item.ativo" class="badge text-bg-success"> Ativo </span>
                                 <span v-if="!item.ativo" class="badge text-bg-danger"> Inativo </span>
                             </th>
                             <th class="text-start">{{ item.condutor.nome }}</th>
                             <th class="text-start">{{ item.veiculo.placa }}</th>
-                            <th class="text-start">{{ item.entrada }}</th>
-                            <th class="text-start">{{ item.saida }}</th>
-                            <th class="text-start">{{ item.valorMulta }}</th>
-                            <th class="text-start">{{ item.valorTotal }}</th>
+                            <th class="text-center">{{ item.entrada }}</th>
+                            <th class="text-center">{{ item.saida || 'Em aberto' }}</th>
+                            <th class="text-end">R${{ item.valorMulta }}</th>
+                            <th class="text-end">R${{ item.valorTotal }}</th>
                             <th class="col-md-2">
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-sm btn-warning" @click="onClickEditar(item.id)">

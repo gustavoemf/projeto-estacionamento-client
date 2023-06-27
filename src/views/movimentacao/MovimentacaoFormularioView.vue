@@ -14,9 +14,9 @@
     <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label"> Condutor *</label>
-        <select class="form-select remover-borda" v-model="movimentacao.veiculo" required>
-          <option :value="item" v-for="item in veiculoList" :key="item.id">
-            {{ item.placa }}
+        <select class="form-select remover-borda" v-model="movimentacao.condutor" required>
+          <option :value="item" v-for="item in condutorList" :key="item.id">
+            {{ item.nome }}
           </option>
         </select>
       </div>
@@ -24,9 +24,9 @@
     <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label"> Veículo *</label>
-        <select class="form-select remover-borda" v-model="movimentacao.condutor" required>
-          <option :value="item" v-for="item in condutorList" :key="item.id">
-            {{ item.nome }}
+        <select class="form-select remover-borda" v-model="movimentacao.veiculo" required>
+          <option :value="item" v-for="item in veiculoList" :key="item.id">
+            {{ item.placa }}
           </option>
         </select>
       </div>

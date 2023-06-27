@@ -20,7 +20,7 @@
                     </thead>
                     <tbody class="table-group-divider">
                         <tr v-for="item in veiculosLista" :key="item.id">
-                            <th class="col-md-1">{{ item.id }}</th>
+                            <th class="col-md-1 text-center">{{ item.id }}</th>
                             <th class="col-md-2">
                                 <span v-if="item.ativo" class="badge text-bg-success"> Ativo </span>
                                 <span v-if="!item.ativo" class="badge text-bg-danger"> Inativo </span>
@@ -29,7 +29,7 @@
                             <th class="text-start">{{ item.modelo.nome }}</th>
                             <th class="text-start">{{ item.cor }}</th>
                             <th class="text-start">{{ item.tipo }}</th>
-                            <th class="text-start">{{ item.ano }}</th>
+                            <th class="text-end">{{ item.ano }}</th>
                             <th class="col-md-2">
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-sm btn-warning" @click="onClickEditar(item.id)">
