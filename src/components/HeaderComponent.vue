@@ -17,7 +17,8 @@
                             Registros
                         </a>
                         <ul class="dropdown-menu bg-dark">
-                            <li><router-link to="/movimentacao/lista" class="nav-link active">Movimentação</router-link></li>
+                            <li><router-link to="/movimentacao/lista" class="nav-link active">Movimentação</router-link>
+                            </li>
                             <li><router-link to="/condutor/lista" class="nav-link active">Condutor</router-link></li>
                             <li><router-link to="/veiculo/lista" class="nav-link active">Veículo</router-link></li>
                             <li><router-link to="/modelo/lista" class="nav-link active">Modelo</router-link></li>
@@ -25,7 +26,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/configuracoes" class="nav-link active">Configurações</router-link>
+                        <button type="button" class="nav-link active" @click="onClickConfigurar">Configurações</button>
                     </li>
                 </ul>
             </div>
@@ -38,5 +39,24 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
     name: "HeaderComponent",
+    data() {
+        return {
+            alert: {
+                confirm: false as boolean,
+                response: "" as string,
+                message: "" as string,
+                style: "" as string
+            }
+        }
+    },
+    methods: {
+        onClickConfigurar() {
+            if () {
+                this.$router.push({ name: 'configuracao-editar-view', params: { id } });
+            } else {
+                this.$router.push({ name: 'configuracao-view' });
+            }
+        }
+    }
 });
 </script>

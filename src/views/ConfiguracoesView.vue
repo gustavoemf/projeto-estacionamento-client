@@ -1,6 +1,6 @@
 <template>
   <HeaderComponent />
-  <FormHeaderComponent @cadastrar="handleCadastrar" />
+  <FormHeaderComponent />
   <div class="container">
     <hr />
     <div class="row margin-10">
@@ -38,9 +38,10 @@
       </div>
       <div class="col-md-2 text-start form-element">
         <label class="form-label">Gerar desconto</label>
-        <select class="form-select remover-borda select-formulario" v-model="configuracao.gerarDesconto">
-          <option value="1" selected>Sim</option>
-          <option value="2">Não</option>
+        <select data-bind="booleanValue: state" class="form-select remover-borda select-formulario"
+          v-model="configuracao.gerarDesconto">
+          <option value="true" selected>Sim</option>
+          <option value="false">Não</option>
         </select>
       </div>
     </div>
@@ -88,24 +89,12 @@ export default defineComponent({
       }
     };
   },
-  mounted() {
-    this.findById(this.configuracao.id);
-  },
   methods: {
-    findById(id: number) {
-      ConfiguracaoClient.findById(id)
-        .then(sucess => {
-          this.configuracao = sucess
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
     handleCadastrar() {
       if (this.configuracao.id) {
         ConfiguracaoClient.editar(this.configuracao.id, this.configuracao)
           .then(() => {
-            this.$router.push({ name: 'configuracao-lista-view' });
+            this.$router.push({ name: 'home' });
           })
           .catch((error) => {
             console.log(error.data);
@@ -142,6 +131,5 @@ export default defineComponent({
         });
     }
   }
-}
-);
+});
 </script>

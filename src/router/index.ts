@@ -111,13 +111,13 @@ const routes: Array<RouteRecordRaw> = [
     ],
   },
   {
-    path: "/configuracoes",
-    name: "configuracoes",
+    path: "/configuracao/formulario/",
+    name: "configuracao-view",
     component: ConfiguracaoView,
     children: [
       {
-        path: "/configuracoes/:id",
-        name: "configuracoes-editar-view",
+        path: "/configuracao/formulario/:id",
+        name: "configuracao-editar-view",
         component: ConfiguracaoView
       },
     ],
