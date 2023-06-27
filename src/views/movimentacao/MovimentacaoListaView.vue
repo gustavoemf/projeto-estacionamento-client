@@ -30,8 +30,8 @@
                             <th class="text-start">{{ item.veiculo.placa }}</th>
                             <th class="text-center">{{ item.entrada }}</th>
                             <th class="text-center">{{ item.saida || 'Em aberto' }}</th>
-                            <th class="text-end">R${{ item.valorMulta }}</th>
-                            <th class="text-end">R${{ item.valorTotal }}</th>
+                            <th class="text-end">R$ {{ item.valorMulta || 0 }}</th>
+                            <th class="text-end">R$ {{ item.valorTotal || 0 }}</th>
                             <th class="col-md-2">
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-sm btn-warning" @click="onClickEditar(item.id)">

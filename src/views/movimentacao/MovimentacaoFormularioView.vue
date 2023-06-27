@@ -34,13 +34,13 @@
     <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label">Entrada *</label>
-        <input type="datetime-local" class="form-control remover-borda" v-model="movimentacao.entrada" required>
+        <input type="time" class="form-control remover-borda" v-model="movimentacao.entrada" required>
       </div>
     </div>
     <div class="row margin-10">
       <div class="col-md-6 text-start">
         <label class="form-label">Saída</label>
-        <input type="datetime-local" class="form-control remover-borda" v-model="movimentacao.saida">
+        <input type="time" class="form-control remover-borda" v-model="movimentacao.saida">
       </div>
     </div>
   </div>
